@@ -1,2 +1,4 @@
 # stle
-Casual Notes on Mathematics. Mostly about basic calculus, algebra and probability.
+Casual Notes on Mathematics.
+
+Mostly about basic calculus, algebra and probability. Maybe helpful for engineering guys...
