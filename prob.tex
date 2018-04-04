@@ -12,6 +12,7 @@ frame=single
 }
 
 \newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Sum}[2]{\sum_{#2=0}^n#1_i}
 
 \title{Prob Fragments}
 \author{a1trl9}
@@ -20,7 +21,26 @@ frame=single
 \begin{document}
 \maketitle
 
-\section{Basic}
+\section{Concepts}
+
+What is random variables?
+
+What is confidence Interval?
+
+\section{Skills}
+
+\begin{equation}
+\begin{split}
+&\sum_{i=1}^nX_i^2-(\sum_{i=1}^nX_i)^2/n \\
+&=\sum_{i=1}^nX_i^2+(\sum_{i=1}^nX_i)^2/n-2(\sum_{i=1}^nX_i)^2/n\\
+&=\sum_{i=1}^n[(X_i-\overline{X})^2 + 2X_i\overline{X}] -2(\sum_{i=1}^nX_i)^2/n\\
+&=\sum_{i=1}^n(X_i-\overline{X})^2 + 2n\overline{X}^2-2n\overline{X}^2\\
+&=\sum_{i=1}^n(X_i-\overline{X})^2
+\end{split}
+\end{equation}
+
+
+\section{Proof}
 
 \textbf{Probability Density Function of \(X_1+X_2\)}
 
@@ -66,7 +86,7 @@ Why unbiased?
 
 \begin{equation*}
 \begin{split}
-    E[\sum_{i}^n(x_i-\bar{x})^2]&=\sum_i^nE[(x_i-\bar{x})^2]=\sum_i^n[E(x_i-\frac{1}{n}\sum_{j}^nx_j)^2]\\
+    E[\sum_{i}^n(x_i-\overline{x})^2]&=\sum_i^nE[(x_i-\overline{x})^2]=\sum_i^n[E(x_i-\frac{1}{n}\sum_{j}^nx_j)^2]\\
     &=n[E({x_i}^2)+\frac{1}{n^2}E(\sum_{j}^nx_j)^2-\frac{2}{n}E(x_i\sum_{j}^nx_j)]\\
     &=n[\sigma^2+\mu^2+\frac{1}{n^2}nE({x_i}^2)+\frac{1}{n^2}\sum_{i}^{n}\sum_{j}^{n-1}E(x_ix_j)\\
     &-\frac{2}{n}E(x_i^2)-\frac{2}{n}(n-1)E(x_ix_j)]\\
@@ -236,13 +256,13 @@ Therefore:
 
 \textbf{Linear Regression}
 
-We know for \(\hat{Y}=\hat{\beta_0}+\hat{\beta_1}(X_i-\bar{X})\), through least squares:
+We know for \(\hat{Y}=\hat{\beta_0}+\hat{\beta_1}(X_i-\overline{X})\), through least squares:
 
 \begin{equation}
 \left\{
 \begin{split}
-\hat{\beta_0}&=\bar{Y}\\
-\hat{\beta_1}&=\frac{\sum_{i=1}^n(X_i-\bar{X})Y_i}{\sum_{i=1}^n(X_i-\bar{X})^2}
+\hat{\beta_0}&=\overline{Y}\\
+\hat{\beta_1}&=\frac{\sum_{i=1}^n(X_i-\overline{X})Y_i}{\sum_{i=1}^n(X_i-\overline{X})^2}
 \end{split}
 \right.
 \end{equation}
@@ -265,60 +285,60 @@ How to prove?
 
 First:
 \begin{equation}
-    Y_i-\hat{Y_i}=\beta_0+\beta_1(X_i-\bar{X_i})+e_i-\hat{\beta_0}-\hat{\beta_1}(X_i-\bar{X})
+    Y_i-\hat{Y_i}=\beta_0+\beta_1(X_i-\overline{X_i})+e_i-\hat{\beta_0}-\hat{\beta_1}(X_i-\overline{X})
 \end{equation}
 
 And:
 \begin{equation}
     \begin{split}
-    \beta_0-\hat{\beta_0}&=\beta_0-\bar{Y}\\
-    &=\beta_0-\frac{1}{n}\sum_{i=1}^n[\beta_0+\beta_1(X_i-\bar{X}+e_i]\\
-    &=\beta_0-\beta_0-\bar{e}\\
-    &=-\bar{e}
+    \beta_0-\hat{\beta_0}&=\beta_0-\overline{Y}\\
+    &=\beta_0-\frac{1}{n}\sum_{i=1}^n[\beta_0+\beta_1(X_i-\overline{X}+e_i]\\
+    &=\beta_0-\beta_0-\overline{e}\\
+    &=-\overline{e}
     \end{split}
 \end{equation}
 
 Further:
 \begin{equation}
     \begin{split}
-    \beta_1-\hat{\beta_1}&=\beta_1-\frac{\sum_{i=1}^n(X_i-\bar{X})Y_i}{\sum_{i=1}^n(X_i-\bar{X})^2}\\
-    &=\beta_1-\frac{\sum_{i=1}^n(X_i-\bar{X})[\beta_0+\beta_1(X_i-\bar{X})+e_i]}{\sum_{i=1}^n(X_i-\bar{X})^2}\\
-    &=\frac{\beta{1}\sum_{i=1}^n(X_i-\bar{X})^2}{\sum_{i=1}^n(X_i-\bar{X})^2}-\frac{\beta_0\sum_{i=1}^n(X_i-\bar{X})}{\sum_{i=1}^n(X_i-\bar{X})^2}\\
-    &-\frac{\beta{1}\sum_{i=1}^n(X_i-\bar{X})^2}{\sum_{i=1}^n(X_i-\bar{X})^2}-\frac{\sum_{i=1}^n(X_i-\bar{x})e_i}{\sum_{i=1}^n(X_i-\bar{X})^2}\\
-    &=-\frac{\sum_{i=1}^n(X_i-\bar{x})e_i}{\sum_{i=1}^n(X_i-\bar{X})^2}
+    \beta_1-\hat{\beta_1}&=\beta_1-\frac{\sum_{i=1}^n(X_i-\overline{X})Y_i}{\sum_{i=1}^n(X_i-\overline{X})^2}\\
+    &=\beta_1-\frac{\sum_{i=1}^n(X_i-\overline{X})[\beta_0+\beta_1(X_i-\overline{X})+e_i]}{\sum_{i=1}^n(X_i-\overline{X})^2}\\
+    &=\frac{\beta{1}\sum_{i=1}^n(X_i-\overline{X})^2}{\sum_{i=1}^n(X_i-\overline{X})^2}-\frac{\beta_0\sum_{i=1}^n(X_i-\overline{X})}{\sum_{i=1}^n(X_i-\overline{X})^2}\\
+    &-\frac{\beta{1}\sum_{i=1}^n(X_i-\overline{X})^2}{\sum_{i=1}^n(X_i-\overline{X})^2}-\frac{\sum_{i=1}^n(X_i-\overline{x})e_i}{\sum_{i=1}^n(X_i-\overline{X})^2}\\
+    &=-\frac{\sum_{i=1}^n(X_i-\overline{x})e_i}{\sum_{i=1}^n(X_i-\overline{X})^2}
     \end{split}
 \end{equation}
 
 Therefore:
 \begin{equation}
-\delta_i=e_i-\bar{e}-\frac{\sum_{i=1}^n(X_i-\bar{x})e_i}{\sum_{i=1}^n(X_i-\bar{X})^2}
+\delta_i=e_i-\overline{e}-\frac{\sum_{i=1}^n(X_i-\overline{x})e_i}{\sum_{i=1}^n(X_i-\overline{X})^2}
 \end{equation}
 
 Also:
 \begin{equation}
-\sum_{i=1}^n[\frac{\sum_{i=1}^n(X_i-\bar{x})e_i}{\sum_{i=1}^n(X_i-\bar{X})^2}]^2=
-\frac{[\sum_{i=1}^n(X_i-\bar{x})e_i]^2}{\sum_{i=1}^n(X_i-\bar{X})^2}
+\sum_{i=1}^n[\frac{\sum_{i=1}^n(X_i-\overline{x})e_i}{\sum_{i=1}^n(X_i-\overline{X})^2}]^2=
+\frac{[\sum_{i=1}^n(X_i-\overline{x})e_i]^2}{\sum_{i=1}^n(X_i-\overline{X})^2}
 \end{equation}
 
 And:
 \begin{equation}
-\sum_{i=1}^n(e_i-\bar{e})(X_i-\bar{X})=\sum_{i=1}^n(e_i)(X_i-\bar{X})
+\sum_{i=1}^n(e_i-\overline{e})(X_i-\overline{X})=\sum_{i=1}^n(e_i)(X_i-\overline{X})
 \end{equation}
 
 Therefore:
 \begin{equation}
-\sum_{i=1}^n\delta_i^2=\sum_{i=1}^n(e_i-\bar{e})^2-\frac{[\sum_{i=1}^n(X_i-\bar{x})e_i]^2}{\sum_{i=1}^n(X_i-\bar{X})^2}
+\sum_{i=1}^n\delta_i^2=\sum_{i=1}^n(e_i-\overline{e})^2-\frac{[\sum_{i=1}^n(X_i-\overline{x})e_i]^2}{\sum_{i=1}^n(X_i-\overline{X})^2}
 \end{equation}
 
 As we know:
 \begin{equation}
-E[\sum_{i=1}^n(e_i-\bar{e})^2]=(n-1)\sigma^2
+E[\sum_{i=1}^n(e_i-\overline{e})^2]=(n-1)\sigma^2
 \end{equation}
 
 And as we consider $X_1, X_2, \cdots, X_n$ as known variables, \(e\stackrel{d}{=}\mathcal{N}(0, \sigma^2)\):
 
 \begin{equation}
-E[\sum_{i=1}^n(X_i-\bar{X})e_i]=\Var{[\sum_{i=1}^n(X_i-\bar{X})e_i]}=\sigma^2\sum_{i=1}^n(X_i-\bar{X})^2
+E[\sum_{i=1}^n(X_i-\overline{X})e_i]=\Var{[\sum_{i=1}^n(X_i-\overline{X})e_i]}=\sigma^2\sum_{i=1}^n(X_i-\overline{X})^2
 \end{equation}
 
 Finally we get:
@@ -421,5 +441,145 @@ f(y)&=F'(y)=\int_{-\infty}^{\infty}f(y-y_2,y_2)dy_2\\
 \end{equation}
 
 It is the same as (4).
+
+\textbf{t distribution}
+
+Having iid variables \(X_1, X_2, \cdots, X_n, N\sim (\mu, \sigma)\).
+Let \(\overline{X}=\frac{1}{n}\Sum{X}{i}\), then
+
+\begin{equation}
+    t=\frac{\sqrt{n}(\overline{X}-\mu)}{s}
+\end{equation}
+follows \(t_{n-1}\) distribution. Where:
+
+\begin{equation}
+    s=\sqrt{\frac{\sum_{i=1}^n(x_i-\overline{x})^2}{n-1}}
+\end{equation}
+
+Let \(f(x_1, x_2, \cdots, x_n)\) be the joint probability density function 
+of \(X_1, X_2, \cdots, X_n\). Let \(A\) be a \(n\times n\) orthogonal matrix, which each
+element of the first row is \(1/\sqrt{n}\).
+Let:
+
+\begin{equation}
+    \begin{bmatrix}
+        Y_1\\
+        Y_2\\
+        \vdots\\
+        Y_n
+    \end{bmatrix} = A
+    \begin{bmatrix}
+        X_1\\
+        X_2\\
+        \vdots\\
+        X_n
+    \end{bmatrix}
+\end{equation}
+
+The \(n\) linear transformations could be presented as functions:
+
+\begin{equation}
+    \left\{
+        \begin{split}
+            Y_1 &= g_1(X_1, X_2, \cdots, X_n)\\
+            Y_2 &= g_2(X_1, X_2, \cdots, X_n)\\
+            &\vdots \\
+            Y_n &= g_n(X_1, X_2, \cdots, X_n)\\
+        \end{split}
+    \right.
+\end{equation}
+
+As the determinant of \(A\) is not \(0\), \(g_1, g_2, \cdots, g_n\)
+are invertible (let presenting them as \(h_1, h_2, \cdots, h_n)\).
+
+Therefore, the joint probability density function of \(Y_1, Y_2, \cdots,
+Y_n\) could be presented as:
+
+\begin{equation}
+    \begin{split}
+    g(y_1,y_2,\cdots,y_n)&=f(h_1(y_1,y_2,\cdots,y_n),\\
+    &h_2(y_1,y_2,\cdots,y_n),\cdots,h_n(y_1,y_2,\cdots,y_n))\\
+    &|J(y_1,y_2,\cdots,y_n)|
+    \end{split}
+\end{equation}
+
+As \(A\) is an orthogonal matrix, \(|J(y_1,y_2,\cdots,y_n|=1\), therefore:
+
+\begin{equation}
+\begin{split}
+g(y_1,y_2,\cdots,y_n)&=f(h_1(y_1,y_2,\cdots,y_n),\\
+    &h_2(y_1,y_2,\cdots,y_n),\cdots,h_n(y_1,y_2,\cdots,y_n))\\
+    &=(\sqrt{2\pi\sigma})^{-n}e^{-\frac{1}{2\sigma^2}(\sum_
+    {i=1}^nx_i^2-2\mu\sum_{i=1}^nx_i+\mu^2)}
+\end{split}
+\end{equation}
+
+As \(A\) is an orthogonal matrix:
+\begin{equation}
+    \sum_{i=0}^nX_i^2=\sum_{i=0}^nY_i^2
+\end{equation}
+
+Also as each element of first row is \(\sqrt{1}/{n}\):
+
+\begin{equation}
+    \sum_{i=0}^nX_i = \sqrt{n}{Y_1}
+\end{equation}
+
+So:
+
+\begin{equation}
+    \begin{split}
+    &(\sqrt{2\pi\sigma})^{-n}e^{-\frac{1}{2\sigma^2}(\sum_
+        {i=1}^nx_i^2-2\mu\sum_{i=1}^nx_i+\mu^2)}\\
+    &=(\sqrt{2\pi\sigma})^{-n}e^{-\frac{1}{2\sigma^2}(
+        \sum_{i=1}^ny_i^2-2\sqrt{n}y_1+\mu^2)}\\
+    &=(\sqrt{2\pi\sigma})^{-n}e^{-\frac{1}{2\sigma^2}
+    (y_1^2-2\sqrt{n}y_1+\mu^2+\sum_{i=2}^ny_i^2)}\\
+    &=(\sqrt{2\pi\sigma})^{-1}e^{-\frac{1}{2\sigma^2}(y_1-\sqrt{n}\mu)^2}\\
+    &\cdot(\sqrt{2\pi\sigma})^{-1}e^{-\frac{1}{2\sigma^2}y_2^2}\cdot
+    \cdots(\sqrt{2\pi\sigma})^{-1}e^{-\frac{1}{2\sigma^2}y_n^2}
+    \end{split}
+\end{equation}
+
+Therefore, \(y_1,y_2,\cdots,y_n\) are independent, and:
+
+\begin{equation}
+    \begin{split}
+   &Y_1\sim N(\sqrt{n}\mu, \sigma) \\
+   &Y_1\sim N(0, \sigma) \\
+   &\vdots \\
+   &Y_n\sim N(0, \sigma) \\
+    \end{split}
+\end{equation}
+
+As \(Y_1=\frac{1}{\sqrt{n}}\sum_{i=1}^nX_i\),
+
+\begin{equation}
+    \frac{\sqrt{n}(\overline{X}-\mu)}{\sigma}\sim N(0,1)
+\end{equation}
+
+Given in (1):
+
+\begin{equation}
+    \sum_{i=2}^nY_i^2=\sum_{i=1}^{n}X_i^2-(\sum_{i=1}^nX_i)^2/n
+    =\sum_{i=1}^n(X_i-\overline{X})^2
+\end{equation}
+
+So, \(\frac{1}{\sigma^2}\sum_{i=1}^n(X_i-\overline{X})^2\sim \chi_{n-1}\)
+
+\vspace{3mm}
+
+It is also proved that \(X_i\) is independent from \(\sum_{i=2}^nX_i^2\).
+
+Therefore:
+
+\begin{equation}
+\begin{split}
+&\frac{\sqrt{n}(\overline{x}-\mu)}{\sigma}/
+\sqrt{\frac{1}{\sigma^2(n-1)}\sum_{i=1}^n(X_i-\overline{X})^2}\\
+&=\frac{\frac{1}{\sigma}\sum_{i=1}^n(X_i-\overline{X})^2}{s}
+\end{split}
+\end{equation}
+follows \(t_{n-1}\).
 
 \end{document}
