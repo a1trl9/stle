@@ -1,0 +1,428 @@
+\documentclass{article}
+\usepackage{amsmath}
+\author{a1trl9}
+\title{Algebra Review}
+\date{}
+
+\setlength\parindent{0pt}
+
+\begin{document}
+\maketitle
+
+\section{Determinant}
+
+\subsection{Definition}
+
+\subsubsection{Linearity and Antisymmetry}
+
+Considering the set consisting of all 
+\(n \times n\) matrix \(M_n(K)\) in the number field \(K\) and
+a function \(f\) in the domain,
+the linearity by row embodies as:
+
+For matrix:
+
+\begin{equation*}
+A=
+\begin{bmatrix}
+    \alpha_1 \\
+    \alpha_2 \\
+    \vdots \\
+    \alpha_n
+\end{bmatrix}
+\end{equation*}
+
+If for \(i \in [1, n]\):
+
+\begin{equation*}
+    \alpha_i=k\alpha+l\beta
+\end{equation*}
+
+Then:
+
+\begin{equation}
+f(A)=
+\begin{bmatrix}
+    \alpha_1 \\
+    \vdots \\
+    \alpha_i \\
+    \vdots \\
+    \alpha_n
+\end{bmatrix} =
+kf(
+\begin{bmatrix}
+    \alpha_1 \\
+    \vdots \\
+    \alpha \\
+    \vdots \\
+    \alpha_n
+\end{bmatrix}) + lf(
+\begin{bmatrix}
+    \alpha_1 \\
+    \vdots \\
+    \beta \\
+    \vdots \\
+    \alpha_n
+\end{bmatrix}
+)
+\end{equation}
+
+Similarly, the linearity by column embodies as:
+
+\begin{equation}
+\begin{split}
+\begin{bmatrix}
+    \alpha_1 &
+    \cdots &
+    \alpha_i &
+    \cdots &
+    \alpha_n
+\end{bmatrix} & =
+kf(
+\begin{bmatrix}
+    \alpha_1 &
+    \cdots &
+    \alpha &
+    \cdots &
+    \alpha_n
+\end{bmatrix}) \\
+& + lf(
+\begin{bmatrix}
+    \alpha_1 &
+    \cdots &
+    \beta &
+    \cdots &
+    \alpha_n
+\end{bmatrix}
+)
+\end{split}
+\end{equation}
+
+Moreover, the function \(f\) holding the characteristic above is
+said antisymmetric if
+\(f(A)=0\) when any two rows/columns of \(A\) are identical. 
+
+\vspace{2mm}
+\textbf{Proposition 1:}
+
+if function \(f\) holds all characteristics above (i.e. linear
+by row/column, antisymmetric), then:
+
+\begin{itemize}
+    \item Swap two rows/coloums of matrix \(A\) to matrix \(B\),
+    \(f(A)=-f(B)\).
+    \item Add \(\lambda\alpha_j\) to \(\alpha_i\) to get matrix \(B\),
+    \(f(A)=f(B)\).
+\end{itemize}
+
+\vspace{2mm}
+\textbf{Proof:}
+
+Assuming \(f\) holds linearity by row, then:
+\begin{equation}
+\begin{split}
+f(
+\begin{bmatrix}
+    \alpha_1 \\
+    \vdots \\
+    \alpha_i \\
+    \vdots \\
+    \alpha_j \\
+    \vdots \\
+    \alpha_n
+\end{bmatrix}) + 
+f(\begin{bmatrix}
+    \alpha_1 \\
+    \vdots \\
+    \alpha_j \\
+    \vdots \\
+    \alpha_i \\
+    \vdots \\
+    \alpha_n
+\end{bmatrix})
+=
+f(\begin{bmatrix}
+    \alpha_1 \\
+    \vdots \\
+    \alpha_i + \alpha_j \\
+    \vdots \\
+    \alpha_j + \alpha_i \\
+    \vdots \\
+    \alpha_n
+\end{bmatrix})=0
+\end{split}
+\end{equation}
+
+Therefore:
+\begin{equation}
+f(
+\begin{bmatrix}
+    \alpha_1 \\
+    \vdots \\
+    \alpha_i \\
+    \vdots \\
+    \alpha_j \\
+    \vdots \\
+    \alpha_n
+\end{bmatrix}) = 
+-f(\begin{bmatrix}
+    \alpha_1 \\
+    \vdots \\
+    \alpha_j \\
+    \vdots \\
+    \alpha_i \\
+    \vdots \\
+    \alpha_n
+\end{bmatrix})
+\end{equation}
+
+Besides:
+
+\begin{equation}
+f(
+\begin{bmatrix}
+    \alpha_1 \\
+    \vdots \\
+    \alpha_i + \lambda\alpha_j \\
+    \vdots \\
+    \alpha_j \\
+    \vdots \\
+    \alpha_n
+\end{bmatrix}) = 
+f(\begin{bmatrix}
+    \alpha_1 \\
+    \vdots \\
+    \alpha_i \\
+    \vdots \\
+    \alpha_j \\
+    \vdots \\
+    \alpha_n
+\end{bmatrix}) +
+\lambda f(\begin{bmatrix}
+    \alpha_1 \\
+    \vdots \\
+    \alpha_j \\
+    \vdots \\
+    \alpha_j \\
+    \vdots \\
+    \alpha_n
+\end{bmatrix}) =
+f(\begin{bmatrix}
+    \alpha_1 \\
+    \vdots \\
+    \alpha_i \\
+    \vdots \\
+    \alpha_j \\
+    \vdots \\
+    \alpha_n
+\end{bmatrix}) + 0 =
+f(\begin{bmatrix}
+    \alpha_1 \\
+    \vdots \\
+    \alpha_i \\
+    \vdots \\
+    \alpha_j \\
+    \vdots \\
+    \alpha_n
+\end{bmatrix})
+\end{equation}
+
+For \(f\) holding the linearity by column, the proof is similar.
+
+\vspace{2mm}
+\textbf{Inference 1}
+
+Together with the rule indicated in (1), namely:
+
+\begin{equation}
+f(\begin{bmatrix}
+    \alpha_1 \\
+    \vdots \\
+    \lambda\alpha_i \\
+    \vdots \\
+    \alpha_n
+\end{bmatrix})=
+\lambda f(\begin{bmatrix}
+    \alpha_1 \\
+    \vdots \\
+    \alpha_i \\
+    \vdots \\
+    \alpha_n
+\end{bmatrix})
+\end{equation}
+
+And:
+
+\begin{equation}
+f(\begin{bmatrix}
+    \alpha_1 &
+    \cdots &
+    \lambda\alpha_i &
+    \cdots &
+    \alpha_n
+\end{bmatrix})=
+\lambda f(\begin{bmatrix}
+    \alpha_1 &
+    \cdots &
+    \alpha_i &
+    \cdots &
+    \alpha_n
+\end{bmatrix})
+\end{equation}
+
+These three rules correspond to three types of elementary transformations
+by row/column. Therefore, it is obvious that for two functions \(f,g\) holding
+antisymmetry and linearity, if \(f(A)=g(A)\) and \(B=AP_1P_2\cdots P_n\)
+where \(P_1, P_2, \cdots, P_n\) are all elementary matrics, then
+\(f(B)=g(B)\).
+
+\vspace{2mm}
+\textbf{Inference 2}
+
+The necessary and sufficient condition for a function \(f\) holding
+linearity by row/column to be antisymmetric is for each matrix
+\(A\) that is rank deficient, \(f(A)=0\).
+
+\vspace{2mm}
+\textbf{Proof:}
+
+\vspace{1mm}
+\textit{Sufficient:}
+
+Since for each matrix \(A\) that is rank deficient, \(f(A)=0\),
+and obviously if \(A\) has two identical rows/columns, \(A\) is
+rank deficient. So \(f(A)=0\) when \(A\) has two identical rows/columns.
+
+\vspace{2mm}
+\textit{Necessary:}
+
+Assuming \(f\) holds linearity by row. Then for \(\lambda \neq 0\):
+
+\begin{equation}
+\begin{bmatrix}
+    \alpha_1 \\
+    \vdots \\
+    \mathbf{0} \\
+    \vdots \\
+    \alpha_n
+\end{bmatrix} = 
+\begin{bmatrix}
+    \alpha_1 \\
+    \vdots \\
+    \lambda \mathbf{0} \\
+    \vdots \\
+    \alpha_n
+\end{bmatrix} = 
+\lambda\begin{bmatrix}
+    \alpha_1 \\
+    \vdots \\
+    \mathbf{0} \\
+    \vdots \\
+    \alpha_n
+\end{bmatrix}
+\end{equation}
+
+Therefore:
+
+\begin{equation}
+\begin{bmatrix}
+    \alpha_1 \\
+    \vdots \\
+    \mathbf{0} \\
+    \vdots \\
+    \alpha_n
+\end{bmatrix} = 0
+\end{equation}
+
+Besides, if \(A\) is rank deficient, with \(\alpha_i = k_1\alpha_1 + \cdots +
+k_{i-1}\alpha_{i-1} + k_{i+1}\alpha_{i+1} + \cdots + k_n\alpha_n\),
+repeat the step that \(\alpha'_i=\alpha_i - k_j \alpha_{j}\) for
+\(k = 1, 2, \cdots, i-1, i+1, \cdots, n\). Finally, \(\alpha'_i=\mathbf{0}\).
+Considering \(f\) holds the linearity:
+
+\begin{equation}
+f(A)=f(
+\begin{bmatrix}
+    \alpha_1 \\
+    \vdots \\
+    \alpha_i \\
+    \vdots \\
+    \alpha_n
+\end{bmatrix})=
+f(\begin{bmatrix}
+    \alpha_1 \\
+    \vdots \\
+    \alpha'_i \\
+    \vdots \\
+    \alpha_n
+\end{bmatrix})=
+f(\begin{bmatrix}
+    \alpha_1 \\
+    \vdots \\
+    \mathbf{0} \\
+    \vdots \\
+    \alpha_n
+\end{bmatrix})=0
+\end{equation}
+
+For \(f\) holding the linearity by column, the proof is similar.
+
+\subsubsection{Definition}
+
+There are three characteristics that a determinant function holds:
+
+\begin{itemize}
+    \item If matrix \(A\) is rank deficient, \(f(A)=0\).
+    \item For identity matrix \(E\), \(f(E)=1\).
+    \item Linearity by column.
+\end{itemize}
+
+\vspace{2mm}
+\textbf{Proposition 2:} The determinant function is unique.
+
+\vspace{2mm}
+\textbf{Proof:}
+
+Assuming there are two determinant functions: \(f, g\). 
+
+For matrix \(A\), When \(r(A)<n\), according to the three characteristics,
+\(f(A)=g(A)=0\).
+
+When \(r(A)=n\), \(A\) can be presented as \(EP_1P_2\cdots P_m\) where
+\(E\) is an identity matrix and \(P_1, P_2, \cdots, P_m\) are elementary
+matrics. As \(f(E)=g(E)\), together with \textbf{Inference 1}, 
+\(f(A)=g(A)\).
+
+So \(f, g\) are identical.
+
+\vspace{2mm}
+\textbf{Proposition 3:}
+For a determinant function \(f\), \(f(A)=f(A')\) where \(A'\) is
+the transpose of matrix \(A\).
+
+\vspace{2mm}
+\textbf{Proof:}
+
+When \(r(A)<n\), then \(f(A)=f(A')=0\).
+
+When \(r(A)=n\), \(A\) can be presented as \(EP_1P_2\cdots P_m\) where
+\(E\) is an identity matrix and \(P_1, P_2, \cdots, P_m\) are elementary
+matrics. \(f(A)=(-1)^r\lambda_1\lambda_2\cdots \lambda_s\) where \(r,s\)
+are numbers of the type I \& type II elementary matrics (i.e. \(P_i=P_n(j,k)\) or
+\(P_i=P_n(\lambda\cdot k)\)) respectively. 
+Similarly, \(A'=EP'_mP'_{m-1}\cdots P'_1\). 
+\(f(A')=(-1)^{r'}\lambda_1\lambda_2\cdots \lambda_{s'}\).
+
+When \(P_i\) is the
+first or second type of elementary, matrics , \(P_i=P'_i\). So \(P_1P_2\cdots P_m\)
+and \(P'_mP'_{m-1}\cdots P'_1\) contain the same number of type I and type
+II elementary matrics.
+When \(P_i\) is the
+third type (i.e. \(P_i=P_n(\lambda\cdot j, k)\)), \(P'_i\) is also the
+third type, therefore \(f(XP_i)=f(X)\) and \(f(XP'_i)=f(X)\) (\(P_i,
+P'_i\) will not change the output of \(f\)).
+
+So \(f(A)=f(EP_1P_2\cdots P_m)=f(EP'_mP'_{m-1}\cdots P'_1)=f(A')\).
+
+
+\end{document}

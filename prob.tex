@@ -1,0 +1,99 @@
+\documentclass{article}
+\author{a1trl9}
+\title{Probability Review}
+\date{}
+
+\usepackage{amsmath}
+
+\setlength\parindent{0pt}
+
+\begin{document}
+\maketitle
+
+\section{Random Variables}
+
+\subsection{Characteristics of Random Variables}
+
+\subsubsection{Expected Value}
+
+For discrete random variable \(X\), expected value is denfined as:
+
+\begin{equation}
+\sum_{i=1}^{\infty}x_ip_i
+\end{equation}
+
+Where \(p_i\) is the probability for \(X=x_i\).
+
+For continuous random variable \(X\), expected value is defined as:
+
+\begin{equation}
+    \int_{\mathbf{R}}f(x)xdx
+\end{equation}
+
+Where \(f(x)\) is the probability density function for \(X=x\).
+
+\vspace{2mm}
+\textbf{Proposition 1:} For random variables \(X_1, X_2\), no matter if
+they are independent, \(E(X_1+X_2)=E(X_1)+E(X_2)\).
+
+\textbf{Proof}
+
+If \(X_1, X_2\) are continuous variables. Then:
+
+\begin{equation}
+\begin{split}
+    E(X_1 + X_2)&=\int_{-\infty}^{\infty}
+    \int_{-\infty}^{\infty}f(x_1, x_2)(x_1+x_2)dx_1dx_2\\
+    &=\int_{-\infty}^{\infty}x_1dx_1\int_{-\infty}^{\infty}f(x_1,x_2)dx_2\\
+    &+\int_{-\infty}^{\infty}x_2dx_2\int_{-\infty}^{\infty}f(x_1,x_2)dx_1\\
+    &=\int_{-\infty}^{\infty}x_1f(x_1)dx_1+\int_{-\infty}^{\infty}x_2f(x_2)dx_2\\
+    &=E(X_1)+E(X_2)
+\end{split}
+\end{equation}
+
+Noting it actually requires rigorous proof to show why the order of
+integrations on \(x_1, x_2\) could be interchanged.
+
+\vspace{2mm}
+\textbf{Proposition 2:} If \(X_1, X_2\) are two independent random variables,
+\(E(X_1X_2)=E(X_1)E(X_2)\).
+
+\vspace{2mm}
+\textbf{Proof}
+
+\textit{Only prove when \(X_1, X_2\) are continuous variables.}
+
+Since \(X_1, X_2\) are independent:
+\begin{equation}
+    f(x_1, x_2)=f(x_1)f(x_2)
+\end{equation}
+
+Therefore:
+
+\begin{equation}
+\begin{split}
+    E(X_1X_2)&=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}
+    x_1x_2f(x_1, x_2)dx_1dx_2\\
+    &=\int_{-\infty}^{\infty}f(x_1)dx_1\int_{-\infty}^{\infty}f(x_2)dx_2\\
+    &=E(X_1)E(X_2)
+\end{split}
+\end{equation}
+
+\subsubsection{Variance}
+
+\vspace{2mm}
+\textbf{Proposition 3:} If \(X_1, X_2\) are two independent random variables,
+\(Var(X_1+X_2)=Var(X_1)+Var(X_2)\).
+
+\vspace{2mm}
+\textbf{Proof}
+\begin{equation}
+\begin{split}
+    &Var(X_1+X_2)=E\{[(X_1+X_2)-E(X_1+X_2)]^2\}\\
+    &=E[(X_1+X_2)^2]-E^2(X_1+X_2)\\
+    &=E(X_1^2)+E(X_2^2)+2E(X_1X_2)-E^2(X_1)-E^2(X_2)-2E(X_1)E(X_2)\\
+    &=E(X_1^2)-E^2(X_1)+E(X_2^2)-E^2(X_2)\\
+    &=Var(X_1)+Var(X_2)
+\end{split}
+\end{equation}
+\end{document}
