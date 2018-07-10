@@ -5,9 +5,68 @@
 \date{}
 
 \setlength\parindent{0pt}
+\counterwithin*{equation}{section}
 
 \begin{document}
 \maketitle
+
+\section{System of Linear Equations}
+\textbf{Proposition 1:} for a homogeneous system of linear equations on
+\(K\), if the number of equations \(m\) is fewer than the number of
+variables \(n\), then it must have a non-trival solution.
+
+\vspace{2mm}
+\textbf{Mathematical Induction}
+
+When \(m=1, n>m\), if one coefficient \(a_{1k}=0\), then one
+solution is \(x_k=1\) and
+all other variables are equal to \(0\). If no
+coefficient is equal to \(0\). Then one solution is
+\(x_k = -\frac{a_{1k+1}}{a_{k}},
+x_{k+1}=1\), all other variables are equal to \(0\).
+
+\vspace{1mm}
+Considering when \(m > 1\) while for \(m-1\) the proposition holds.
+
+If all coefficients for \(x_1\) are equal to zero, then one solution is
+\(x_1=1, x_2=0, \cdots, x_n=0\).
+
+If not, then change the order of equations so that \(\alpha_{11} \neq 0\).
+Now repeat the step \(eq(k) - \frac{a_{11}}{a_{k1}}eq(1)\) where \(eq(t)\)
+presents the equation \(t\) and \(k=2,3,\cdots,n\). Finally, the system
+of equations are transformed to:
+\begin{equation}
+\left\{
+\begin{split}
+    &a_{11}x_1+a_{12}x_2+\cdots+a_{1n}x_n=0 \\
+    &a'_{22}x_2 + \cdots + a'_{2n}x_n=0 \\
+    &\vdots\\
+    &a'_{m2}x_2 + \cdots + a'_{mn}x_n=0 \\
+\end{split}
+\right.
+\end{equation}
+
+Now the second to last equations construct a new homogeneous system
+of equations with \(m-1\) equations and \(n-1\) variables:
+\begin{equation}
+\left\{
+\begin{split}
+    &a'_{22}x_2 + \cdots + a'_{2n}x_n=0 \\
+    &a'_{32}x_2 + \cdots + a'_{3n}x_n=0 \\
+    &\vdots\\
+    &a'_{m2}x_2 + \cdots + a'_{mn}x_n=0 \\
+\end{split}
+\right.
+\end{equation}
+
+Since \(n>m\), \(n-1>m-1\). And the proposition hold for \(m-1\). There
+exists one non-trival solution \(x_2=k_2, \cdots, x_n=k_n\).
+
+Back to (1). Since \(a_{11} \neq 0\), with
+\(x_2=k_2, \cdots, x_n=k_n\), there must be one solution \(x_1=k_1\)
+letting \(a_{11}k_1+a_{12}k_2+\cdots+a_{1n}k_n=0\).
+
+\section{Vector space \& Matrix \& System of Linear Equations}
 
 \section{Determinant}
 
