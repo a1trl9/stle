@@ -68,6 +68,170 @@ letting \(a_{11}k_1+a_{12}k_2+\cdots+a_{1n}k_n=0\).
 
 \section{Vector space \& Matrix \& System of Linear Equations}
 
+\subsection{Vector space}
+
+\textbf{Proposition 2.1.4:} Given two sets of vectors:
+
+\begin{equation}
+\begin{split}
+    \alpha_1, \alpha_2, \cdots, \alpha_r, \quad\quad (\mathbf{I}) \\
+    \beta_1, \beta, \cdots, \beta_s, \quad\quad (\mathbf{II})
+\end{split}
+\end{equation}
+
+If each vector in \((\mathbf{I})\) can be defined as a linear combination
+of \((\mathbf{II})\), and \(r>s\). Then \((\mathbf{I})\) are linearly dependent.
+
+\vspace{2mm}
+\textbf{Proof}
+
+As each vector in \((\mathbf{I})\) can be defined as a linear combination
+of \((\mathbf{II})\):
+
+\begin{equation}
+\begin{split}
+&\alpha_1 = x_{11}\beta_1 + x_{12}\beta_2 + \cdots + x_{1s}\beta_s \\
+&\alpha_2 = x_{21}\beta_1 + x_{22}\beta_2 + \cdots + x_{2s}\beta_s \\
+&\vdots\\
+&\alpha_r = x_{r1}\beta_1 + x_{r2}\beta_2 + \cdots + x_{rs}\beta_s \\
+\end{split}
+\end{equation}
+
+Then given \(k_1, k_2, \cdots, k_s\):
+
+\begin{equation}
+\sum_{i=1}^{r}k_i\alpha_i=
+\sum_{j=1}^{s}x_{j1}k_j\beta_1
++\sum_{j=1}^{s}x_{j2}k_j\beta_2
++\cdots
++\sum_{j=1}^{s}x_{jr}k_j\beta_r
+\end{equation}
+
+In which, since \(r>s\), for:
+
+\begin{equation}
+\left
+\{
+\begin{split}
+&x_{11}k_1 + x_{21}k_2 + \cdots + x_{s1}k_s = 0 \\
+&x_{12}k_1 + x_{22}k_2 + \cdots + x_{s2}k_s = 0 \\
+&\vdots\\
+&x_{1r}k_1 + x_{2r}k_2 + \cdots + x_{sr}k_s = 0 \\
+\end{split}
+\right.
+\end{equation}
+
+According to proposition 1 in section 1, there
+must be a non-trival solution. That is, there exists \(k_1, k_2, \cdots, k_s\),
+in which at least one \(k_n \neq 0\), for \(i = 1, 2, \cdots, r\), \(\sum_{j=1}^s
+x_{ji}k_j=0\), in which case \(\sum_{i=1}^rk_i\alpha_i=0\) as well.
+. So, \(\alpha_1, \alpha_2,
+\cdots, \alpha_r\) are linearly dependent.
+
+\subsection{Matrix operations}
+
+\subsubsection{Operations and rank}
+
+\textbf{Proposition 2.2.4:}: \(r(AB)\leq min(r(A), r(B))\).
+
+\vspace{2mm}
+\textit{Lemma 1:}
+For two matrics:
+
+\begin{equation}
+\begin{split}
+    &A=\begin{bmatrix}
+    \alpha_1, \alpha_2, \cdots, \alpha_r \\
+    \end{bmatrix}\\
+    &B=\begin{bmatrix}
+    \beta_1, \beta_2, \cdots, \beta_s
+    \end{bmatrix}
+\end{split}
+\end{equation}
+
+if each column vector of \(A\) could be defined as a linear combination
+of column vectors in \(B\), then \(r(A)\leq r(B)\).
+
+\vspace{2mm}
+\textbf{Proof}
+
+Since each column vector of \(A\) could be defined as a linear combination
+of column vectors in \(B\), the maximally linearly independent set
+of \(A\): \(\alpha_{i_1}, \alpha_{i_2}, \cdots, \alpha_{i_k}\)
+could be defined as a linear combination of
+the maximally linearly independent set of \(B\):
+\(\beta_{j_1}, \beta_{j_2}, \cdots, \beta_{j_m}\) as well.
+
+Since \(\alpha_{i_1}, \alpha_{i_2}, \cdots, \alpha_{i_k}\) must be
+linearly independent, according to proposition 2.1.4,
+\(i_k \leq j_m \), that is \(r(A)\leq r(B)\).
+
+\vspace{2mm}
+\textbf{Proof for proposition 2.2.4}
+
+Let \(C=AB=\begin{bmatrix}c_1,c_2,\cdots,c_n\end{bmatrix}\). Then
+for \(c_i, i = 1, 2, \cdots, n\):
+
+\begin{equation}
+\begin{split}
+c_i &= \begin{bmatrix}
+a_{11}b_{i1}+a_{12}b_{i2}+\cdots+a_{1m}b_{im}\\
+a_{21}b_{i1}+a_{22}b_{i2}+\cdots+a_{2m}b_{im}\\
+a_{k1}b_{i1}+a_{k2}b_{i2}+\cdots+a_{km}b_{im}\\
+\end{bmatrix}\\
+&=\alpha_1b_{i1}+\alpha_2b_{i2}+\cdots+\alpha_mb_{im}
+\end{split}
+\end{equation}
+
+That is, each column vector of \(C\) could be presented as
+a combination of column vectors of \(A\). So according
+to the lemma, \(r(C)\leq r(A)\). Similarly, \(r(C)\leq r(B)\)
+(using transpose). Therefore, \(r(AB)\leq min(r(A), r(B))\).
+
+\subsection{Square matrix}
+
+\textbf{Proposition 2.3.3:} for a \(n\) square matrix \(A\) in the number
+field \(K\), the sufficient and necessary condition for \(A\) is
+invertable is \(A\) has full rank.
+
+\vspace{2mm}
+\textbf{Proof}
+
+\vspace{2mm}
+\textit{Sufficiency}
+
+When \(A\) has full rank, there exist elementary matrics
+\(P_i, Q_j, i = 1, 2, \cdots, n, j=1,2,\cdots,m\), such that:
+
+\begin{equation}
+    P_1P_2\cdots P_nA = E
+\end{equation}
+
+And:
+
+\begin{equation}
+    AQ_1Q_2\cdots Q_m = E
+\end{equation}
+
+Let \(P=P_1P_2\cdots P_n\), and \(Q=Q_1Q_2\cdots Q_m\).
+
+Then:
+
+\begin{equation}
+P=PE=PAQ=(PA)Q=EQ=Q
+\end{equation}
+
+So \(AP=PA=E\), A is invertable.
+
+\vspace{2mm}
+
+\textit{Necessity}
+
+Since \(A\) is invertable, there exists \(P\), \(AP=E\).
+According to proposition 2.2.4, \(r(E)=n\leq min(r(A), r(P))\leq r(A)\).
+Therefore \(r(A)=n\) and has full rank.
+
+
 \section{Determinant}
 
 \subsection{Definition}
@@ -162,7 +326,7 @@ said antisymmetric if
 \(f(A)=0\) when any two rows/columns of \(A\) are identical. 
 
 \vspace{2mm}
-\textbf{Proposition 1:}
+\textbf{Proposition 3.1.1:}
 
 if function \(f\) holds all characteristics above (i.e. linear
 by row/column, antisymmetric), then:
@@ -437,7 +601,7 @@ There are three characteristics that a determinant function holds:
 \end{itemize}
 
 \vspace{2mm}
-\textbf{Proposition 2:} The determinant function is unique.
+\textbf{Proposition 3.1.2:} The determinant function is unique.
 
 \vspace{2mm}
 \textbf{Proof:}
@@ -455,7 +619,7 @@ matrics. As \(f(E)=g(E)\), together with \textbf{Inference 1},
 So \(f, g\) are identical.
 
 \vspace{2mm}
-\textbf{Proposition 3:}
+\textbf{Proposition 3.1.3:}
 For a determinant function \(f\), \(f(A)=f(A')\) where \(A'\) is
 the transpose of matrix \(A\).
 

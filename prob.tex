@@ -96,4 +96,42 @@ Therefore:
     &=Var(X_1)+Var(X_2)
 \end{split}
 \end{equation}
+\section{Linear Regression}
+\textbf{Least Square Approach in the form of matrix}
+As for:
+
+\begin{equation}
+\mathbf{y}=X\beta + \epsilon
+\end{equation}
+
+The least square approach tries to minimize:
+
+\begin{equation}
+f=||y-X\beta||^2
+\end{equation}
+
+Let each partial derivative of \(f\) on \(\beta\) is equal to zero. That is,
+for \(\beta_j\):
+\begin{equation}
+\sum_{i=1}^nx_{ij}(y_i-\mathbf{x}_i\beta)=0
+\end{equation}
+
+It could be transformed to:
+\begin{equation}
+\begin{split}
+&\sum_{i=1}^nx_{ij}y_i=\sum_{i=1}^nx_{ij}\mathbf{x}_i\beta\\
+&\mathbf{x}'_j\mathbf{y}=\mathbf{x}'_jX\beta
+\end{split}
+\end{equation}
+
+Now for all partial derivatives:
+\begin{equation}
+X'\mathbf{y}=X'X\beta
+\end{equation}
+
+That is:
+\begin{equation}
+\beta=(X'X)^{-1}X'\mathbf{y}
+\end{equation}
+
 \end{document}
