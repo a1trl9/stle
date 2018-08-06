@@ -1,0 +1,113 @@
+
+\documentclass{article}
+\usepackage{amsmath}
+\author{a1trl9}
+\title{Machine Learning Review}
+\date{}
+
+\setlength\parindent{0pt}
+\counterwithin*{equation}{section}
+
+\newcommand{\V}[1]{\boldsymbol{#1}}
+\newcommand{\TM}{\bigtriangledown}
+
+\begin{document}
+\maketitle
+\section{Regression}
+\subsection{Logistic Regression}
+\subsubsection{Why Logistic Regression is a Linear Classifier}
+
+Noting:
+\begin{equation}
+P(y_i=1)=\frac{1}{exp(-\V{w'}\V{x_i})+1}
+\end{equation}
+
+If we set \(p=0.5\) as the threshold, then:
+\begin{equation}
+\left\{
+\begin{split}
+&\hat{y}=1 \quad if \quad \V{w'}\V{x}>0\\
+&\hat{y}=0 \quad if \quad \V{w'}\V{x}\leq0
+\end{split}
+\right.
+\end{equation}
+
+It yields that if all training data are linearly separable, logistic regression
+may lead to over-fitting. Intuitively, when \(\V{w}\) subjects to all data are
+classified correctly, scaling \(\V{w}\) up can always increase likelihood and when
+\(\V{w} \to \infty\), \(p(y_i)=1\) for all data points.
+
+\subsubsection{The convexity of Negative Log-likelihood Function}
+
+Since:
+\begin{equation}
+\left\{
+\begin{split}
+&P(y_i=1)=\frac{1}{exp(-\V{w'}\V{x_i})+1}\\
+&P(y_i=0)=\frac{1}{exp(\V{w'}\V{x_i})+1}
+\end{split}
+\right.
+\end{equation}
+Where \(\V{w}\) is the coefficient vector while \(\V{x_i}\) is the feature vector.
+Assuming the dimension is \(m\).
+
+If we transform the label set from \(\{1, 0\}\) to \(\{1, -1\}\), then
+\begin{equation}
+p(y_i)=\frac{1}{exp(-y_i\V{w'}\V{x_i})+1}
+\end{equation}
+
+Let \(z=-y_i\V{w'}\V{x_i}\), then the negative log-likelihood function is:
+\begin{equation}
+-L=-\sum_{i}^{N}log[\frac{1}{exp(z)+1}]
+\end{equation}
+
+Here we assume \(L\) is \textbf{twice continuously differentiable}.
+
+Let \(g(z)=\frac{1}{exp(z)+1}\), then:
+\begin{equation}
+g'(z)=-\frac{exp(z)}{[exp(z)+1]^2}=-g(z)[1-g(z)]
+\end{equation}
+
+Therefore:
+\begin{equation}
+\begin{split}
+\frac{d(-L)}{dw_j}&=-\sum_{i}^N\frac{1}{g(z)}g(z)[1-g(z)]y_ix_{ij}\\
+&=-\sum_{i}^Ny_ix_{ij}[1-g(z)]
+\end{split}
+\end{equation}
+
+And:
+\begin{equation}
+\begin{split}
+\frac{d(-L)}{dw_jdw_k}&=\sum_{i}^Ny_i^2x_{ij}x_{ik}g(z)[1-g(z)]\\
+&=\sum_{i}^Nx_{ij}x_{ik}g(z)[1-g(z)]
+\end{split}
+\end{equation}
+
+Let \(\V{a}\) be any m-dimension vector. And \(\TM^2\) is the Hessian matrix
+of \(-L\). Then:
+
+\begin{equation}
+\begin{split}
+\V{a'}\TM^2\V{a}&=\sum_{i}^N\sum_{j}^m\sum_{k}^ma_ja_kx_{ij}x_{ik}g(z)[1-g(z)]\\
+&=\sum_{i}^N{\{\sqrt{g(z)[1-g(z)]}\V{a'}\V{x_i}\}^2}\\
+&\geq 0
+\end{split}
+\end{equation}
+
+So \(\TM^2\) is a positive semi-definite matrix, and \(-L\) is Therefore
+a convex function.
+
+\vspace{2mm}
+\textbf{Further}
+\begin{itemize}
+\item It can be proved, that for any identifiable model from exponential family,
+the negative log-likelihood function is strictly convex and therefore
+the maximum likelihood estimate is unique \textbf{if it exists}.
+\item When \(x_1, x_2, \cdots, x_N\) are not linearly independent, it is possible
+that \(\V{a'}\TM\V{a}=0\), in which case, \(-L\) is not strictly convex and
+the minimum might not be unique.
+\item If we add L2 regularizer, then \(-L\) will be strictly convex.
+\end{itemize}
+
+\end{document}

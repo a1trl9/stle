@@ -4,8 +4,10 @@
 \date{}
 
 \usepackage{amsmath}
+\usepackage{amsfonts}
 
 \setlength\parindent{0pt}
+\counterwithin*{equation}{section}
 
 \begin{document}
 \maketitle
@@ -96,6 +98,52 @@ Therefore:
     &=Var(X_1)+Var(X_2)
 \end{split}
 \end{equation}
+
+\section{Distributions}
+\subsection{Discrete Distributions}
+\subsubsection{Poisson Distribution}
+\textbf{PDF}
+
+\begin{equation}
+p(k)=\frac{e^{-\lambda}\lambda^k}{k!}
+\end{equation}
+
+Where \(k \in \{0\} \cup \mathbb{N}\).
+
+According to Taylor series (at 0, Maclaurin series):
+\begin{equation}
+\begin{split}
+f(\lambda)&=e^{\lambda}=f(0)+\frac{f'(0)\lambda}{1!}+\frac{f''(0)\lambda^2}{2!}+\cdots\\
+&=\frac{\lambda^0}{0!}+\frac{\lambda^1}{1!}+\frac{\lambda^2}{2!}+\cdots\\
+&=\sum_{k=0}^\infty\frac{\lambda^k}{k!}
+\end{split}
+\end{equation}
+
+Therefore:
+\begin{equation}
+\begin{split}
+\sum_{k=0}^{\infty}\frac{e^{-\lambda}\lambda^k}{k!}&=e^{-\lambda}\sum_{k=0}^{\infty}\frac{\lambda^k}{k!}\\
+&=e^{-\lambda}e^{\lambda}\\
+&=1
+\end{split}
+\end{equation}
+
+\subsection{Continuous Distributions}
+\subsubsection{Exponential Distribution}
+\textbf{PDF}
+
+\begin{equation}
+p(x)=\lambda e^{-\lambda x}
+\end{equation}
+
+It is obvious:
+\begin{equation}
+\begin{split}
+\int_{0}^{\infty}\lambda e^{-\lambda x}&=-e^{-\lambda x}|^{\infty}_0\\
+&=-e^{\infty}+e^0=0+1=1
+\end{split}
+\end{equation}
+
 \section{Linear Regression}
 \textbf{Least Square Approach in the form of matrix}
 As for:
