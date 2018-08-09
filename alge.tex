@@ -7,6 +7,9 @@
 \setlength\parindent{0pt}
 \counterwithin*{equation}{section}
 
+\newcommand{\V}[1]{\boldsymbol{#1}}
+\newcommand{\TM}{\bigtriangledown}
+
 \begin{document}
 \maketitle
 
@@ -231,6 +234,27 @@ Since \(A\) is invertable, there exists \(P\), \(AP=E\).
 According to proposition 2.2.4, \(r(E)=n\leq min(r(A), r(P))\leq r(A)\).
 Therefore \(r(A)=n\) and has full rank.
 
+\vspace{2mm}
+\textbf{Proposition 2.3.5}: For a \(n \times n\) square matrix \(\mathbf{X}\),
+\(X"X\) is a positive semi-definite matrix.
+
+\vspace{2mm}
+\textbf{Proof}
+If we present \(X=[X_1, X_2, \cdots, X_n]'\) and
+\(X'=[X_1, X_2, \cdots, X_n]\)
+It can be shown \(\mathbf{A}=\mathbf{X}'\mathbf{X}\) is symmetric as
+\begin{equation}
+   a_{ij}=X_i \cdot X_j =a_{ji}
+\end{equation}
+
+Where \(a_{kl}\) presents the element located in the \(k\)th row and \(l\)th column
+of \(A\).
+
+Then for any non-zero vector \(\V{v}\):
+\begin{equation}
+\V{v}'A\V{v}=\V{v}'\mathbf{X}'\mathbf{X}\V{v}=(\mathbf{X}\V{v})'\mathbf{X}\V{v}
+=||\mathbf{X}\V{v}||^2\geq 0
+\end{equation}
 
 \section{Determinant}
 

@@ -1,6 +1,8 @@
 
 \documentclass{article}
 \usepackage{amsmath}
+\usepackage{amsfonts}
+
 \author{a1trl9}
 \title{Machine Learning Review}
 \date{}
@@ -103,11 +105,180 @@ a convex function.
 \begin{itemize}
 \item It can be proved, that for any identifiable model from exponential family,
 the negative log-likelihood function is strictly convex and therefore
-the maximum likelihood estimate is unique \textbf{if it exists}.
+the maximum likelihood estimate is unique \textbf{if it exists}. When model
+is not identifiable (happens when variables are not independent), only
+convex holds.
 \item When \(x_1, x_2, \cdots, x_N\) are not linearly independent, it is possible
 that \(\V{a'}\TM\V{a}=0\), in which case, \(-L\) is not strictly convex and
 the minimum might not be unique.
 \item If we add L2 regularizer, then \(-L\) will be strictly convex.
 \end{itemize}
+
+\subsubsection{*Convexity \& Concavity and Hessian Matrix}
+
+Suppose \(f: V \rightarrow \mathbb{R} \) is a twice differentiable function. \(V\) is
+a convex set on \(\mathbb{R}^n\). If \(f\) is not convex, then \(\exists (\V{x_1}, 
+\V{x_2}) \in V, \exists t \in (0, 1) \), \(f((1-t)\V{x_1} + t\V{x_2}) > (1-t)f(\V{x_1})+tf(\V{x_2})\).
+Let \(\theta: (0, 1) \rightarrow R: \theta(k)=f((1-k)\V{x_1}+k\V{x_2})\). Then
+\begin{equation}
+\theta(t)=f((1-t)\V{x_1}+t\V{x_2}) > (1-t)f(\V{x_1})+tf(\V{x_2})=(1-t)\theta(0)+t\theta(1)\
+\end{equation}
+
+Therefore:
+\begin{equation}
+\left\{
+\begin{split}
+&\theta(t)-\theta(0)>t(\theta(1)-\theta(0))\\
+&\theta(1)-\theta(t)<(1-t)(\theta(1)-\theta(0))
+\end{split}
+\right.
+\end{equation}
+
+According to Mean Value Theorem, \(\exists t_1 \in (0, t), t_2 \in (t, 1)\),
+subject to \(\frac{\theta}{dt}(t_1)t=\theta(t)-\theta(0),
+\frac{\theta}{dt}(t_2)(1-t)=\theta(1)-\theta(t)\). So:
+
+\begin{equation}
+\left\{
+\begin{split}
+&\frac{\theta}{dt}(t_1)>\theta(1)-\theta(0)\\
+&\frac{\theta}{dt}(t_2)<\theta(1)-\theta(0)
+\end{split}
+\right.
+\end{equation}
+
+It further yields:
+
+\begin{equation}
+\frac{\theta}{dt}(t_1)>\frac{\theta}{dt}(t_2)
+\end{equation}
+
+Apply Mean Value Theorem again:
+\begin{equation}
+\frac{\theta}{dt}(t_2)-\frac{\theta}{dt}(t_1)=(t_2-t_1)\frac{d^2\theta}{dt^2}(t_3)
+\end{equation}
+
+Where \(t_3 \in (t_1, t_2)\). And obviously \(\frac{d^2\theta}{dt^2}(t_3)<0\).
+
+As we know \(\frac{d^2\theta}{dt^2}=(\V{x_2}-\V{x_1})'d^2f(\V{x_2}-\V{x_1})\),
+where \(d^f\) is the Hessian matrix of \(f\). When it is positive semi-definite,
+\(\V{x_2}-\V{x_1})'d^2f(\V{x_2}-\V{x_1})\geq 0\), which is contradict to
+\(\frac{d^2\theta}{dt^2}(t_3)<0\).
+
+Therefore, when the Hessian matrix of \(f\) is positive semi-definite, \(f\) is
+convex. Similarly, if the Hessian matrix of \(f\) is negative semi-definite,
+\(f\) is concave.
+
+\section{Regularisation}
+\subsection{Transformation for Linear Regression}
+Without regularisation:
+\begin{equation}
+L=||\mathbf{X}\V{w}-\V{y}||^2
+\end{equation}
+
+With regularisation:
+\begin{equation}
+L=||\mathbf{X}\V{w}-\V{y}||^2+\lambda||\V{w}||^2
+\end{equation}
+
+Where \(\lambda\) controls the strength of regularisation. Now we try to solve:
+\begin{equation}
+\begin{split}
+&2\mathbf{X}'(\mathbf{X}\V{w}-\V{y})+2\lambda \V{w}=\V{0}\\
+&\implies (\mathbf{X}'\mathbf{X}+\lambda \mathbf{I})\V{w}=\mathbf{X}'\V{y}\\
+&\implies \V{w}=(\mathbf{X}'\mathbf{X}+\lambda \mathbf{I})'\mathbf{X}'\V{y}
+\end{split}
+\end{equation}
+
+\subsection{Transformation for Logistic Regression}
+
+Without regularisation (ignoring intercept):
+\begin{equation}
+\begin{split}
+&L=-\sum_{i}^my_ilog(\sigma(\V{x}_i\V{w}))+(1-y_i)log(1-\sigma(\V{x}_i\V{w}))\\
+&\implies
+\frac{dL}{\V{w}}=-\sum_{i}^m(y_i(1-\sigma(\V{x}_i))-(1-y_i)\sigma(\V{x}_i\V{w})))\V{x}'_i\\
+&=\sum_{i}^m(\sigma(\V{x}_i\V{w})-y_i)\V{x}_i'\\
+\end{split}
+\end{equation}
+
+With regularisation:
+\begin{equation}
+\begin{split}
+&\frac{dL}{\V{w}}=-\sum_{i}^m(y_i(1-\sigma(\V{x}_i))-(1-y_i)\sigma(\V{x}_i\V{w})))\V{x}'_i+\lambda\V{w}\\
+&=\sum_{i}^m(\sigma(\V{x}_i\V{w})-y_i)\V{x}_i'+\lambda\V{w}\\
+\end{split}
+\end{equation}
+
+\section{Perceptron}
+\subsection{Perceptron Convergence}
+Assuming the training data (\(N\) points) are linearly separable, in which case, 
+\(\exists \V{v}: ||\V{v}||=1\), subjects to \(y_i\V{v'}\V{x_i}>\gamma\), for
+\(i=1, 2, \cdots N\).
+Noting at each gradient step, the update is in the form of:
+
+\begin{equation}
+\V{w}^{t+1}=\V{w}^t+\eta y_j\V{x_j}
+\end{equation}
+
+Where \(<y_j, \V{x_j}>\) is the pair of predicted class \& selected misclassified point.
+
+As we know:
+\begin{equation}
+||y_k\eta\V{x_k} +\V{w}^{k-1}||^2=||y_k\eta\V{x_k}||^2+||\V{w}^{k-1}||^2+y_k\eta\V{x_k}\cdot \V{w}^{k-1}
+\end{equation}
+
+Moreover, \(y_k\V{x}\V{w}^{k-1}\) is always negative since \(\V{x_k}\) is a
+misclassified point. Therefore:
+
+\begin{equation}
+\begin{split}
+||\V{w}^k||^2&=||y_k\eta\V{x_k} +\V{w}^{k-1}||^2<||y_k\eta \V{x_k}||^2+||\V{w}^{k-1}||^2\\
+&\leq (\eta R)^2 + ||\V{w}^{k-1}||^2
+\end{split}
+\end{equation}
+
+Iteratively, we get:
+
+\begin{equation}
+||\V{w}^k||^2<||\V{w}^0||^2+k(\eta R)^2
+\end{equation}
+
+Meanwhile:
+\begin{equation}
+\begin{split}
+\sum_{i=1}^k|\V{v'}\cdot (\V{w}^i-\V{w}^{i-1})|&=\V{v'}\cdot\sum_{i=1}^k(\V{w}^i-\V{w}^{i-1})\\
+&=\V{v'}\cdot (\V{w}^k-\V{w}^0)\\
+&\leq ||\V{v'}||||\V{w}^k-\V{w}^0||\\
+&=||\V{w}^k-\V{w}^0||\\
+&= \sqrt{||\V{w}^k||^2 + ||\V{w}^0||^2 - \V{w}^k \cdot \V{w}^0}\\
+&\leq \sqrt{||\V{w}^k||^2+||\V{w}^0||^2+||\V{w}^k||||\V{w}^0||}
+\end{split}
+\end{equation}
+
+In addition, since:
+\begin{equation}
+\begin{split}
+\sum_{i=1}^k|\V{v'}\cdot (\V{w}^i-\V{w}^{i-1})|&=\sum_{i=1}^k|\V{v'}\cdot (y_i\eta\V{x_i}')|\\
+&\geq ky
+\end{split}
+\end{equation}
+
+We finally get:
+\begin{equation}
+\begin{split}
+k\gamma &\leq \sum_{i=1}^k|\V{v'}\cdot (\V{w}^i-\V{w}^{i-1})|\\
+&\leq \sqrt{||\V{w}^k||^2+||\V{w}^0||^2+||\V{w}^k||||\V{w}^0||}\\
+&\leq\sqrt{||\V{w}^0||^2+k(\eta R)^2+||\V{w}^0||^2+||\V{w}^0||\sqrt{||\V{w}^0||^2+k(\eta R)^2}}
+\end{split}
+\end{equation}
+
+Here, we treat \(\V{w}^0\) as constant and therefore:
+
+\begin{equation}
+k\gamma < \sqrt{c_1}\sqrt{k(\eta R)^2}
+\end{equation}
+
+So \(k<O((\frac{\eta R}{\gamma})^2)\)
 
 \end{document}
