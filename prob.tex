@@ -5,6 +5,16 @@
 
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{environ}
+
+\newcommand{\V}[1]{\boldsymbol{#1}}
+\newcommand{\TM}{\bigtriangledown}
+
+\NewEnviron{mulequation}{%
+\begin{equation}\begin{split}
+  \BODY
+\end{split}\end{equation}
+}
 
 \setlength\parindent{0pt}
 \counterwithin*{equation}{section}
@@ -143,6 +153,92 @@ It is obvious:
 &=-e^{\infty}+e^0=0+1=1
 \end{split}
 \end{equation}
+
+\subsubsection{Gamma Distribution}
+\vspace{2mm}
+\textbf{PDF}
+\begin{equation}
+\int_0^1x^{a-1}(1-x)^{b-1}dx
+\end{equation}
+
+\subsubsection{Beta Distribution}
+Beta distribution is used as conjugate prior distibution for Bernoulli Distribution.
+
+\vspace{2mm}
+\textbf{PDF}
+\begin{equation}
+p(x)=x^{a-1}(1-x)^{b-1}dx
+\end{equation}
+
+\vspace{2mm}
+\textbf{Further: Beta function}
+
+Beta function holds an interesting property that:
+
+\begin{equation}
+\mathbf{B}(a, b) = \frac{\Gamma{(a)}\Gamma{(b)}}{\Gamma{(a, b)}}
+\end{equation}
+
+\vspace{2mm}
+\textbf{Proof}
+
+Let \(\Gamma(a)=\int_0^{\infty}e^{-x}x^{a-1}dx\) and \(\Gamma(b)=\int_0^{\infty}e^{-y}y^{b-1}dy\), then:
+\begin{equation}
+\begin{split}
+\Gamma(a)\Gamma(b)&=\int_0^{\infty}e^{-x}x^{a-1}dx \cdot \int_0^{\infty}e^{-y}y^{b-1}dy\\
+&=\int_0^{\infty}\int_0^{\infty}e^{-(x+y)}x^{a-1}y^{b-1}dxdy
+\end{split}
+\end{equation}
+
+Let \(f(u, v): (u, v) \rightarrow (x, y), x=uv, y=u(1-v)\), then:
+\begin{equation}
+\Gamma{(a)}\Gamma{(b)}=\int_0^{\infty}\int_0^1e^{-u}(uv)^{a-1}(u(1-v))^{b-1}
+|D(u, v)|dudv
+\end{equation}
+
+Where \(D(\mathbf{J}(u, v))\) is the determinant of Jacobian matrix \(\mathbf{J}\). As:
+\begin{equation}
+\mathbf{J}=
+\begin{bmatrix}
+v & 1 - v \\
+u & -u
+\end{bmatrix}
+\end{equation}
+
+\(|D(\mathbf{J}(u, v))|=|-uv-u(1-v)=-u|=u\). So:
+\begin{mulequation}
+\Gamma{(a)}\Gamma{(b)}=
+&\int_0^{\infty}\int_0^1e^{-u}u^{a+b-2}v^{a-1}(1-v)^{b-1}ududv\\
+&=\int_0^{\infty}\int_0^1e^{-u}u^{a+b-1}v^{a-1}(1-v)^{b-1}dudv\\
+&=\int_0^{\infty}u^{a+b-1}du\int_0^1v^{a-1}(1-v)^{b-1}dv\\
+&=\Gamma{(a+b)}\mathbf{B}(a, b)
+\end{mulequation}
+
+Here one fact is important:
+\(\Gamma(a)=\int_0^{\infty}e^{-x}x^{a-1}dx\) is convergent, which can be proved
+as:
+\begin{equation}
+\begin{split}
+\Gamma{(a)}&=\int_0^{k}e^{-x}x^{a-1}dx+\int_k^{\infty}e^{-x}x^{a-1}dx\\
+\end{split}
+\end{equation}
+
+And it can be shown \(\forall a, \exists k\):
+\begin{equation}
+\begin{split}
+\int_k^{\infty}e^{-x}x^{a-1}dx
+<
+\int_k^{\infty}e^{\frac{-x}{2}}dx=-2e^{\frac{-x}{2}}|^{\infty}_1=2e^{\frac{-k}{2}}
+\end{split}
+\end{equation}
+
+and:
+
+\begin{equation}
+\int_0^{k}e^{-x}x^{a-1}dx
+\end{equation}
+
+is constant.
 
 \section{Linear Regression}
 \textbf{Least Square Approach in the form of matrix}

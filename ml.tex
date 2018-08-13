@@ -16,6 +16,7 @@
 \begin{document}
 \maketitle
 \section{Regression}
+\subsection{Linear Regression}
 \subsection{Logistic Regression}
 \subsubsection{Why Logistic Regression is a Linear Classifier}
 
@@ -27,10 +28,10 @@ P(y_i=1)=\frac{1}{exp(-\V{w'}\V{x_i})+1}
 If we set \(p=0.5\) as the threshold, then:
 \begin{equation}
 \left\{
-\begin{split}
+\begin{aligned}
 &\hat{y}=1 \quad if \quad \V{w'}\V{x}>0\\
 &\hat{y}=0 \quad if \quad \V{w'}\V{x}\leq0
-\end{split}
+\end{aligned}
 \right.
 \end{equation}
 
@@ -44,10 +45,10 @@ classified correctly, scaling \(\V{w}\) up can always increase likelihood and wh
 Since:
 \begin{equation}
 \left\{
-\begin{split}
+\begin{aligned}
 &P(y_i=1)=\frac{1}{exp(-\V{w'}\V{x_i})+1}\\
 &P(y_i=0)=\frac{1}{exp(\V{w'}\V{x_i})+1}
-\end{split}
+\end{aligned}
 \right.
 \end{equation}
 Where \(\V{w}\) is the coefficient vector while \(\V{x_i}\) is the feature vector.
@@ -72,29 +73,29 @@ g'(z)=-\frac{exp(z)}{[exp(z)+1]^2}=-g(z)[1-g(z)]
 
 Therefore:
 \begin{equation}
-\begin{split}
+\begin{aligned}
 \frac{d(-L)}{dw_j}&=-\sum_{i}^N\frac{1}{g(z)}g(z)[1-g(z)]y_ix_{ij}\\
 &=-\sum_{i}^Ny_ix_{ij}[1-g(z)]
-\end{split}
+\end{aligned}
 \end{equation}
 
 And:
 \begin{equation}
-\begin{split}
+\begin{aligned}
 \frac{d(-L)}{dw_jdw_k}&=\sum_{i}^Ny_i^2x_{ij}x_{ik}g(z)[1-g(z)]\\
 &=\sum_{i}^Nx_{ij}x_{ik}g(z)[1-g(z)]
-\end{split}
+\end{aligned}
 \end{equation}
 
 Let \(\V{a}\) be any m-dimension vector. And \(\TM^2\) is the Hessian matrix
 of \(-L\). Then:
 
 \begin{equation}
-\begin{split}
+\begin{aligned}
 \V{a'}\TM^2\V{a}&=\sum_{i}^N\sum_{j}^m\sum_{k}^ma_ja_kx_{ij}x_{ik}g(z)[1-g(z)]\\
 &=\sum_{i}^N{\{\sqrt{g(z)[1-g(z)]}\V{a'}\V{x_i}\}^2}\\
 &\geq 0
-\end{split}
+\end{aligned}
 \end{equation}
 
 So \(\TM^2\) is a positive semi-definite matrix, and \(-L\) is Therefore
@@ -127,10 +128,10 @@ Let \(\theta: (0, 1) \rightarrow R: \theta(k)=f((1-k)\V{x_1}+k\V{x_2})\). Then
 Therefore:
 \begin{equation}
 \left\{
-\begin{split}
+\begin{aligned}
 &\theta(t)-\theta(0)>t(\theta(1)-\theta(0))\\
 &\theta(1)-\theta(t)<(1-t)(\theta(1)-\theta(0))
-\end{split}
+\end{aligned}
 \right.
 \end{equation}
 
@@ -140,10 +141,10 @@ subject to \(\frac{\theta}{dt}(t_1)t=\theta(t)-\theta(0),
 
 \begin{equation}
 \left\{
-\begin{split}
+\begin{aligned}
 &\frac{\theta}{dt}(t_1)>\theta(1)-\theta(0)\\
 &\frac{\theta}{dt}(t_2)<\theta(1)-\theta(0)
-\end{split}
+\end{aligned}
 \right.
 \end{equation}
 
@@ -183,31 +184,31 @@ L=||\mathbf{X}\V{w}-\V{y}||^2+\lambda||\V{w}||^2
 
 Where \(\lambda\) controls the strength of regularisation. Now we try to solve:
 \begin{equation}
-\begin{split}
+\begin{aligned}
 &2\mathbf{X}'(\mathbf{X}\V{w}-\V{y})+2\lambda \V{w}=\V{0}\\
 &\implies (\mathbf{X}'\mathbf{X}+\lambda \mathbf{I})\V{w}=\mathbf{X}'\V{y}\\
 &\implies \V{w}=(\mathbf{X}'\mathbf{X}+\lambda \mathbf{I})'\mathbf{X}'\V{y}
-\end{split}
+\end{aligned}
 \end{equation}
 
 \subsection{Transformation for Logistic Regression}
 
 Without regularisation (ignoring intercept):
 \begin{equation}
-\begin{split}
+\begin{aligned}
 &L=-\sum_{i}^my_ilog(\sigma(\V{x}_i\V{w}))+(1-y_i)log(1-\sigma(\V{x}_i\V{w}))\\
 &\implies
 \frac{dL}{\V{w}}=-\sum_{i}^m(y_i(1-\sigma(\V{x}_i))-(1-y_i)\sigma(\V{x}_i\V{w})))\V{x}'_i\\
 &=\sum_{i}^m(\sigma(\V{x}_i\V{w})-y_i)\V{x}_i'\\
-\end{split}
+\end{aligned}
 \end{equation}
 
 With regularisation:
 \begin{equation}
-\begin{split}
+\begin{aligned}
 &\frac{dL}{\V{w}}=-\sum_{i}^m(y_i(1-\sigma(\V{x}_i))-(1-y_i)\sigma(\V{x}_i\V{w})))\V{x}'_i+\lambda\V{w}\\
 &=\sum_{i}^m(\sigma(\V{x}_i\V{w})-y_i)\V{x}_i'+\lambda\V{w}\\
-\end{split}
+\end{aligned}
 \end{equation}
 
 \section{Perceptron}
@@ -232,10 +233,10 @@ Moreover, \(y_k\V{x}\V{w}^{k-1}\) is always negative since \(\V{x_k}\) is a
 misclassified point. Therefore:
 
 \begin{equation}
-\begin{split}
+\begin{aligned}
 ||\V{w}^k||^2&=||y_k\eta\V{x_k} +\V{w}^{k-1}||^2<||y_k\eta \V{x_k}||^2+||\V{w}^{k-1}||^2\\
 &\leq (\eta R)^2 + ||\V{w}^{k-1}||^2
-\end{split}
+\end{aligned}
 \end{equation}
 
 Iteratively, we get:
@@ -246,31 +247,31 @@ Iteratively, we get:
 
 Meanwhile:
 \begin{equation}
-\begin{split}
+\begin{aligned}
 \sum_{i=1}^k|\V{v'}\cdot (\V{w}^i-\V{w}^{i-1})|&=\V{v'}\cdot\sum_{i=1}^k(\V{w}^i-\V{w}^{i-1})\\
 &=\V{v'}\cdot (\V{w}^k-\V{w}^0)\\
 &\leq ||\V{v'}||||\V{w}^k-\V{w}^0||\\
 &=||\V{w}^k-\V{w}^0||\\
 &= \sqrt{||\V{w}^k||^2 + ||\V{w}^0||^2 - \V{w}^k \cdot \V{w}^0}\\
 &\leq \sqrt{||\V{w}^k||^2+||\V{w}^0||^2+||\V{w}^k||||\V{w}^0||}
-\end{split}
+\end{aligned}
 \end{equation}
 
 In addition, since:
 \begin{equation}
-\begin{split}
+\begin{aligned}
 \sum_{i=1}^k|\V{v'}\cdot (\V{w}^i-\V{w}^{i-1})|&=\sum_{i=1}^k|\V{v'}\cdot (y_i\eta\V{x_i}')|\\
 &\geq ky
-\end{split}
+\end{aligned}
 \end{equation}
 
 We finally get:
 \begin{equation}
-\begin{split}
+\begin{aligned}
 k\gamma &\leq \sum_{i=1}^k|\V{v'}\cdot (\V{w}^i-\V{w}^{i-1})|\\
 &\leq \sqrt{||\V{w}^k||^2+||\V{w}^0||^2+||\V{w}^k||||\V{w}^0||}\\
 &\leq\sqrt{||\V{w}^0||^2+k(\eta R)^2+||\V{w}^0||^2+||\V{w}^0||\sqrt{||\V{w}^0||^2+k(\eta R)^2}}
-\end{split}
+\end{aligned}
 \end{equation}
 
 Here, we treat \(\V{w}^0\) as constant and therefore:
