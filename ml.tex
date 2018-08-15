@@ -305,8 +305,8 @@ k\gamma < \sqrt{c_1}\sqrt{k(\eta R)^2}
 
 So \(k<O((\frac{\eta R}{\gamma})^2)\)
 
-\section{Neutral Network}
-\subsubsection{Local Quadratic Approximation}
+\section{Neural Network}
+\subsection{Local Quadratic Approximation}
 Consider the Taylor expansion of the error function \(E(\V{w})\) around
 a point \(\hat{\V{w}}\) in the weight space:
 \begin{equation}
@@ -379,6 +379,34 @@ Now:
 &=\sum_{i=1}^n\sum_{j=1}^n\alpha_i\alpha_j\lambda_j\V{p}_i'\V{p}_j\\
 &=\sum_{i=1}^n\alpha_i^2\lambda_i\V||{p}_i||^2\\
 &=\sum_{i=1}^n\lambda_i\alpha_i^2
+\end{split}
+\end{equation}
+
+\subsection{Numerical Solution -- Finite Difference}
+\subsubsection{Why central difference is more precise?}
+For one-side difference, with Taylor expansion:
+\begin{equation}
+f(x+\epsilon)=f(x)+\epsilon f'(x)+o(\epsilon)
+\end{equation}
+So:
+\begin{equation}
+\frac{f(x+\epsilon)-f(x)}{\epsilon}=f'(x)+o(\epsilon)
+\end{equation}
+
+For central difference, with Taylor expansion:
+\begin{equation}
+\begin{split}
+&f(x+\epsilon)=f(x)+\epsilon f'(x)+\epsilon^2\frac{f''(x)}{2!}
++o(\epsilon^2)\\
+&f(x-\epsilon)=f(x)-\epsilon f'(x)+\epsilon^2\frac{f''(x)}{2!}
++o(\epsilon^2)
+\end{split}
+\end{equation}
+Therefore:
+\begin{equation}
+\begin{split}
+&f(x+\epsilon)-f(x-\epsilon)=2\epsilon f'(x)+o(\epsilon^2)\\
+&\implies \frac{f(x+\epsilon)-f(x-\epsilon)}{2\epsilon}=f'(x)+o(\epsilon^2)
 \end{split}
 \end{equation}
 
