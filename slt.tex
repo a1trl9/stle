@@ -1,0 +1,68 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\setlength\parindent{0pt}
+
+\title{Learning Notes on Statistical Learning Theory}
+\author{a1trl9}
+\date{}
+
+\begin{document}
+\maketitle
+\section{Lecture 3}
+We have achieved:
+\begin{equation}
+    L(\hat{\theta})-L(\theta^{*}) \approx \frac{p}{2n} + o(\frac{1}{n})
+\end{equation}
+The limitation of the result above is we assume the data are precisely
+distributed according to a particular ground truth parameter \(\theta^{*}\).
+Also, we ignore the dependence of higher order terms on other hyperparameters.
+
+\subsection{Uniform Convergence Framework}
+
+\textbf{Definition:} uniform convergence is a property of hypothesis
+class \(\mathcal{H}\) of the following form:
+\begin{equation}
+\mathrm{Pr}[\forall h \in \mathcal{H}, | \hat{L}(\theta)-L(\theta)\leq \epsilon] \geq 1 - \delta
+\end{equation}
+
+\textbf{Why uniform convergence framework implies generalization?}
+\vspace{2mm}
+\begin{equation}
+\begin{aligned}
+&L(\hat{h})-L(h^{*})\\
+&=L(\hat{h}) - \hat{L}(\hat{h})+\hat{L}(\hat{h})-\hat{L}(h^{*})+\hat{L}(h^{*})-L(h^{*})
+\end{aligned}
+\end{equation}
+
+Since \(\hat{h}\) is the optimal solution for the training example, \(\hat{L}(\hat{h})-\hat{L}(h^{*})\leq 0\), so
+we get:
+\begin{equation}
+\begin{aligned}
+L(\hat{h})-L(h^{*})&\leq L(\hat{h}) - \hat{L}(\hat{h})+0+\hat{L}(h^{*})-L(h^{*})\\
+&\leq |L(\hat{h})-\hat{L}(\hat{h})| + |\hat{L}(h^*)-L(h^*)|\\
+&\leq 2|L({h})-\hat{L}(h)|
+\end{aligned}
+\end{equation}
+
+Therefore, when uniform convergence holds:
+\begin{equation}
+\mathrm{Pr}(L(\hat{h})-L(h^{*})\leq 2\epsilon)\geq\mathrm{Pr}[\forall h \in \mathcal{H}, | \hat{L}(\theta)-L(\theta)\leq \epsilon]\geq 1-\delta
+\begin{aligned}
+\end{aligned}
+\end{equation}
+
+\subsection{Finite Hypothesis Classes}
+If \(\mathcal(H)\) is finite and \(l(x, y), h)\in [0, 1]\), we have the
+following statements (based on Hoeffding Inequality):
+\begin{enumerate}
+\item For any fixed \(h\in \mathcal{H}\) and \(\epsilon > 0\):
+\begin{equation*}
+\mathrm{Pr}[|\hat{L}(h)-L(h)|\leq \epsilon] \geq 1 - 2e^{-2n\epsilon^2}
+\end{equation*}
+\item For any \(\epsilon > 0\):
+\begin{equation*}
+\mathrm{Pr}[\forall h\in \mathcal{H}, | \hat{L}(h) - L(h)| \leq \epsilon]\geq 1 - 2|\mathcal{H}|e^{-2n\epsilon^2}
+\end{equation*}
+\end{enumerate}
+\end{document}
