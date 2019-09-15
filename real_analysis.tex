@@ -1,0 +1,133 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\date{}
+
+\begin{document}
+
+\hypertarget{header-n0}{%
+\subsubsection{Five Observation of Outer Measure}\label{header-n0}}
+
+\textbf{Observation 1: Monotonicity}
+
+if \(E_1 \sub E_2\), then \(m_{*}(E_1)\leq m_{*}(E_2)\).
+
+This directly follows the conclusion that each covering of \(E_2\) also
+covers \(E_1\).
+
+\textbf{Obervation 2: Countable Sub-addictivity}
+
+If \(E = \cup_{j=1}^{\infty}E_j\), then
+\(m_{*}(E)\leq\cup_{j=1}^{\infty}m_{*}(E_j)\).
+
+Let first assume all \(m_*(E_j)<\infty\), otherwise the equation above
+obviously holds.
+
+Then follow the definition of outer measure, construct a covering
+\(\sum_{k=1}^{\infty}Q_{j,k}\) for each \(E_j\) such that:
+
+\[\sum_{k=1}^{\infty}m_{*}(Q_{j,k}) < m_{*}(E_j) + \frac{\epsilon}{2^j}\]
+
+Now \(\sum_{j=1}^{\infty}\sum_{k=1}^{\infty}Q_{j, k}\) is a covering of
+\(E\) and:
+
+\[m_{*}(E)\leq \sum_{j=1}^{\infty}\sum_{k=1}^{\infty}|Q_{j, k}|\leq\sum_{j=1}^{\infty}m_*(E_j)+\frac{\epsilon}{2^j}=\sum_{j=1}^{\infty}m_*(E_j)+\epsilon\]
+
+Since the above equation holds for any arbitrary \(\epsilon\),
+\(m_*(E)\leq\sum_{j=1}^{\infty}m_*(E_j)\).
+
+\textbf{Observation 3}
+
+If \(E\sub \mathbb{R}^d\), then \(m_*(E)=\mathrm{inf}m_*(O)\), where the
+infimum is taken over all open sets \(O\) containing \(E\).
+
+From the \emph{Observation 2}, it is obvious that
+\(m_*(E)\leq \mathrm{inf}m_*(O)\). Therefore, it is sufficient to prove
+the reverse inequality.
+
+Let first construct a covering \(\sum_{j=1}^{\infty}Q_j\) of \(E\) such
+that \(\sum_{j=1}^{\infty}|Q_j|\leq m_*(E)+\frac{\epsilon}{2}\).
+
+Now, let \(Q_{j}^o\) denote an open set containing \(Q_j\) such that
+\(m_*(Q_j^o)\leq m_*(Q_j)+\frac{\epsilon}{2^{j+1}} \) , and
+\(O=\cup_{j=1}^{\infty}Q_{j}^o\) is open. From observation 2:
+
+\[m_*(O)\leq \sum_{j=1}^{\infty}|Q_J^o|\leq\sum_{j=1}^{\infty}|Q_j|+\frac{\epsilon}{2^{{j+1}}}=\sum_{j=1}^{\infty}|Q_j|+\frac{\epsilon}{2}\leq m_*(E)+\epsilon\]
+
+Since the above equation holds for any arbitrary \(\epsilon\),
+\(\mathrm{inf}m_*(O)\leq m_*(O)\leq M_*(E)\).
+
+\textbf{Follow-up Question}: why for every closed set \(Q_j\), we can
+construct an open set \(Q_{j}^{o}\) such that
+\(m_*(Q_j^o)\leq m_*(Q_j)+\frac{\epsilon}{2^{j+1}} \)?
+
+\hypertarget{header-n25}{%
+\subsubsection{Properties of Measurable Sets}\label{header-n25}}
+
+\textbf{Property 2}
+
+If \(m_*(E)=0\), then \(E\) is measurable. In particular, if \(F\) is a
+subset of a set of exterior measure 0, then \(F\) is measurable.
+
+By \textbf{Observation 3} of exterior measure, for each
+\(\epsilon > 0\), there exists an open set with \(E \subset O\) and
+\(m_*(O)\leq \epsilon\). Since \(O-E \subset O\), the monotonicity
+implies \(m_*(O-E)\leq m_*(O)\leq \epsilon\). Therefore, \(E\) is
+measurable.
+
+\textbf{Property 3}
+
+A countable union of measurable sets is measurable.
+
+Suppose \(E=\cup_{i=1}^nE_i\) while each \(E_i\) is measurable. Then
+given \(\epsilon>0\), construct \(O_i\) respectively so that
+\(m_*(O_i-E_i)\leq \frac{\epsilon}{2^j}\). Obviously
+\(O=\cup_{i=1}^nO_i\) is an open set and \(E\subset O\) and
+\(O-E\subset \cup_{i=1}^n(O_i-E_i)\). Further,
+\(m_*(O-E)\leq \sum_{i=1}^n(O_i-E_i)\frac{\epsilon}{2^j}=\epsilon\).
+Proved.
+
+\end{document}
