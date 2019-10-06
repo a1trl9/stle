@@ -53,7 +53,7 @@
 
 \textbf{Observation 1: Monotonicity}
 
-if \(E_1 \sub E_2\), then \(m_{*}(E_1)\leq m_{*}(E_2)\).
+if \(E_1 \subset E_2\), then \(m_{\*}(E_1)\leq m_{\*}(E_2)\).
 
 This directly follows the conclusion that each covering of \(E_2\) also
 covers \(E_1\).
@@ -81,7 +81,7 @@ Since the above equation holds for any arbitrary \(\epsilon\),
 
 \textbf{Observation 3}
 
-If \(E\sub \mathbb{R}^d\), then \(m_*(E)=\mathrm{inf}m_*(O)\), where the
+If \(E \subset\mathbb{R}^d\), then \(m_*(E)=\mathrm{inf}m_*(O)\), where the
 infimum is taken over all open sets \(O\) containing \(E\).
 
 From the \emph{Observation 2}, it is obvious that
@@ -130,4 +130,52 @@ given \(\epsilon>0\), construct \(O_i\) respectively so that
 \(m_*(O-E)\leq \sum_{i=1}^n(O_i-E_i)\frac{\epsilon}{2^j}=\epsilon\).
 Proved.
 
+\subsection{Measurable Function}
+\textbf{Theorem 4.1}
+Suppose \(f\) is a non-negative measurable function on \(\mathbb{R}^d\),
+then there exists an increasing sequence of non-negative simple functions
+\(\{\varphi_k\}^{\infty}_{k=1}\) that converges pointwise to \(f\), namely
+\[\{\varphi_k\}\leq \{\varphi_{k+1}\}\ and \lim_{k\to \infty}\varphi_k(x)=f(x), for\ all\ x\]
+
+\textit{Proof}
+For \(N\geq 1\), let \(Q_N\) denote the cube centered at the origin of side length
+\(N\). Now define:
+\begin{equation}
+F_N(x)=
+\left\{\begin{aligned}
+  & f(x) \quad if\ x \in Q_n\ and\ f(x) \leq N \\ 
+  & N \quad if\ x \in Q_n\ and\ f(x) > N \\
+  & 0 \quad otherwise
+\end{aligned}\right.
+\end{equation}
+
+Intuitively \(F_N(x)\to f(x)\) when \(N\) tends to \(\infty\). Now given two fixed number \(M, N\), construct a series of sets for \(l \in \mathbb{Z_+}\) and
+\(0 \leq l < MN\):
+\[
+  E_{M, l} = \{x | x \in Q_n\ and\ \frac{l}{M} < F_N(x) \leq \frac{l+1}{M} \}
+\]
+
+And then construct simple functions:
+\[
+  F_{M, l}(x)=\sum_{l}\frac{l}{M}\chi_{E_{M, l}}(x)
+\]
+
+Obviously for each \(M\), \(F_N(x)\) could only be in one interval, namely:
+\[
+  F_{M, N}(x)=\frac{l'}{M}\quad for\ some\ l'
+\]
+Which also means \(F_N(x) - F_{M, N}(x) < \frac{1}{M}\) (the size of each interval).
+
+Now let \(N = M = 2^k, k\in\mathbb{Z_+}\) and let series
+\(\{\varphi_k(x)\}=F_{2^k, 2^k}\) being non-negative.
+As \(k\to \infty\), \(F_{M, N}(x)\) uniformly converges to \(F_N(x)\)
+(so does to \(f(x)\)).
+
+Furthermore, assuming for \(M'=2^{k'}\), \(\frac{l'}{M'}<F_N(x)\leq\frac{l'+1}{M'}\),
+for \(M''=2^{k'+1}\), obviously \(\frac{2*l'}{M''}<F_N(x)\), but \(F_N(x)\leq \frac{l'+1}{M''}\)
+is not necessary since the size of interval \(\frac{1}{M''}\) is smaller. Hence
+for \(M''=N''=2^{k'+1}\), \(\frac{l''}{M''}\geq \frac{2l'}{M''}=\frac{l'}{M'}\) and
+\(F_{M'', N''}\geq F_{M', N'}\). \(\{\varphi_k(x)\}\) is increasing.
+
+Overall, \(\varphi_k(x)\) satisfies all the desired properties.
 \end{document}
