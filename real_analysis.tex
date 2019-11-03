@@ -131,6 +131,21 @@ given \(\epsilon>0\), construct \(O_i\) respectively so that
 Proved.
 
 \subsection{Measurable Function}
+\subsubsection{Six Properties of Measurable Function}
+
+\textbf{Property 1}: The finite-valued function \(f\) is measurable if and only if
+\(f^{-1}(\mathcal{O})\) is measurable for every open set \(\mathcal{O}\), so is for
+all closed set \(F\).
+
+\textbf{Property 2}: (TBD)
+
+\textbf{Property 3}: Suppose \(\{f_n\}_{n=1}^{\infty}\) is a sequence of measurable functions.
+Then
+\[\sup_n f_n(x), \quad \inf_n f_n(x), \quad\lim_{n\to\infty} sup, f_n(x) \quad\lim_{n\to\infty} inf f_n(x)\]
+
+are all measurable.
+
+\vspace{2mm}
 \textbf{Theorem 4.1}
 Suppose \(f\) is a non-negative measurable function on \(\mathbb{R}^d\),
 then there exists an increasing sequence of non-negative simple functions
@@ -178,4 +193,31 @@ for \(M''=N''=2^{k'+1}\), \(\frac{l''}{M''}\geq \frac{2l'}{M''}=\frac{l'}{M'}\) 
 \(F_{M'', N''}\geq F_{M', N'}\). \(\{\varphi_k(x)\}\) is increasing.
 
 Overall, \(\varphi_k(x)\) satisfies all the desired properties.
+
+\subsubsection{Egorov Theorem}
+Suppose \(\{f_k\}_k^{\infty}\) is a sequence of measurable functions defined on a
+measurable set \(E\) with \(m(E)<\infty\), and assume \(f_k \to f \) a.e on \(E\).
+Given \(\epsilon > 0\), we can find a closed set \(A_{\epsilon}\subset E\) such that
+\(m(E-A_{\epsilon})\leq \epsilon\) and \(f_k\to f\) uniformly on \(A_{\epsilon}\).
+
+\textit{Proof.} Without loss of generality, assuming \(f_k\to f\) for every \(x\in E\).
+Now construct a pair of two integers \(n\) and \(k\), so that:
+\[E_k^n = \{x\in E: |f_j(x)-f(x)|<\frac{1}{n},\quad for\ all\ j>k\}\]
+Fixing \(n\) and obviously \(E_k^n\subset E_{k+1}^n\). And \(E_k^n \to E\) when \(k\to \infty\).
+By \textit{Corollary ()}, there exists \(k_n\) such that \(m(E-E_{k_n}^n)<\frac{1}{2^n}\).
+Now:
+\[|f_j(x)-f(x)|<\frac{1}{n}\]
+when \(j>k_n\) and \(x\in E_{k_n}^n\)
+
+Choosing \(N\) so that \(\sum_{n=N}^{\infty}2^{-n}<\frac{\epsilon}{2}\), and let:
+\[A_{\epsilon}=\cap_{n\geq N}E_{k_n}^n\].
+
+First \(m(E-A_{\epsilon})<\sum_{n=N}^{\infty}m(E-E_{k_n}^n)<\frac{\epsilon}{2}\).
+
+Next, for \(\delta>0\), choose \(n\geq N\) such that \(\frac{1}{n}<\delta\), and note that \(x\in A_{\epsilon}\)
+implies \(x\in E_{k_n}^n\). Therefore \(|f_j(x)-f(x)| < \delta\) whenever \(j > k_n\). \(f_j\to f\) uniformly on
+\(A_{\epsilon}\).
+
+Finally, by \textit{theorem ()}, choose a closed set \(A'_{\epsilon}\subset A_{\epsilon}\) with
+\(m(A'_{\epsilon}-A_{\epsilon})<\frac{\epsilon}{2}\). This closed set meets all requirements. Proved.
 \end{document}
