@@ -48,6 +48,8 @@
 
 \begin{document}
 
+\section{Measure Theory}
+
 \hypertarget{header-n0}{%
 \subsubsection{Five Observation of Outer Measure}\label{header-n0}}
 
@@ -220,4 +222,21 @@ implies \(x\in E_{k_n}^n\). Therefore \(|f_j(x)-f(x)| < \delta\) whenever \(j > 
 
 Finally, by \textit{theorem ()}, choose a closed set \(A'_{\epsilon}\subset A_{\epsilon}\) with
 \(m(A'_{\epsilon}-A_{\epsilon})<\frac{\epsilon}{2}\). This closed set meets all requirements. Proved.
+
+\section{Integration Theory}
+
+\subsection{Stage one: simple functions}
+A simple function \(\varphi\) is a finite sum:
+\[\varphi(x)=\sum_{k=1}^N a_k \chi_{E}(x)\]
+
+A canonical form of \(\varphi\), which is unique is where \(a_k\)s are distinct and non-zero, while
+the sets \(E_k\) are disjoint.
+
+A straightforward process to find the canonical form is as following: since \(\varphi\) is a form of finite sum,
+its values are finite. Suppose \(varphi\) takes \(M\) finite and non-zero value: \(c_1, \cdots, c_M\), and
+set \(F_k=\{x: \varphi(x)=c_k\}\). Obviously \(F_k\) are disjoint, and \(\sum_{k=1}^Nc_k\chi_{F_k}\) meets all
+requirements of the canonical form.
+
+Now if \(\varphi\) is a simple function with the canonical form, Lebesgue integral is defined as:
+\[\int_{\mathbb{R}^d}\varphi(x)dx=\sum_{k=1}^Mc_km(F_k)\]
 \end{document}
