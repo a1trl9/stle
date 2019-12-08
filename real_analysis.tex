@@ -250,7 +250,34 @@ For general case, namely when \(f\) is any real-valued measurable function on \(
 i) there exists a set of finite measure \(B\) such that
 \[\int_{B^c}|f|<\epsilon\]
 
-\textit{Proof}
+\textit{Proof:}
 Without loss of generality, we assume \(f\) is non-negative. Suppose \(B_N\) is a ball centered at origin and of radius 
-\(N\) and \(F_N(x) = f(x)\chi_{B_N}(x)\).
+\(N\) and \(F_N(x) = f(x)\chi_{B_N}(x)\). Obviously \(f_N\) is measurable, \(f_N \leq f_{n+1}\)
+,\(f_n \to f\) when \(n \to \infty\). By monotone convergence theorem, we have:
+\[\lim_{N\to\infty}\int f_N=\int f\]. In other word, for any \(\epsilon > 0\), there exists a \(N\),
+leads to \(0 \leq \int f - \int f\chi_{B_N} < \epsilon\). Since \(1-\chi_{B_N}=\chi_{B_N^c}\), it implies
+that \(\int_{B_N^c}f < \epsilon\). Proved.
+
+ii) there is a \(\delta > 0 \) such that
+\[\int_E|f|<\epsilon\quad whenever\; m(E)<\delta\] 
+
+\textit{Proof:}
+Again assuming \(f > 0 \). Let \(f_N(x)=f(x)\chi_{E_N}\) where:
+\[E_N=\{x: f(x)<N\}\]
+
+\(f_N\) is measurable, \(f_N \leq f_{N+1}\), and given \(\epsilon>0\), there exists \(N\), so that:
+
+\[\int f - f_N < \frac{\epsilon}{2}\]
+
+Choose \(\delta > 0\) so that \(N\delta < \frac{\epsilon}{2}\). Now if \(m(E)<\delta\):
+\[
+  \begin{split}
+  \int_E f &= \int_E(f-f_N)+\int_E(F_N)\\
+  &\leq f (f - f_N) + f_E(f_N)\\
+  &\leq \frac{\epsilon}{2}+\delta N\\
+  &\leq \frac{\epsilon}{2}+\frac{\epsilon}{2}\\
+  &=\epsilon
+  \end{split}
+  \]
+Proved.
 \end{document}
