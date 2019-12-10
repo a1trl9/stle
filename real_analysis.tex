@@ -280,4 +280,24 @@ Choose \(\delta > 0\) so that \(N\delta < \frac{\epsilon}{2}\). Now if \(m(E)<\d
   \end{split}
   \]
 Proved.
+
+\textbf{Theorem 1.13} Suppose \(\{f_n\}\) is a sequence of measurable functions such that
+\(f_n\to f\) \textit{a.e.x}, as \(n\to \infty\). If \(|f_n(x)|<g(x)\), where \(g\) is integrable,
+then:
+\[\int |f_n-f|\to 0 \quad n\to \infty\]
+and consequently:
+\[\int f_n \to \int f \quad n\to \infty\]
+
+\textit{Proof} suppose \(E_N=\{x: |x|\leq N,\; g(x)\leq N\}\). Given \(\epsilon > 0\), there exists
+\(N\) so that \(\int_{E_N^\epsilon}g < \epsilon\) (\textit{proposition 1.12}). Also, functions \(f_n\chi_{E_N}\)
+are bounded (by \(N\)) and supported on a set of finite measure, so that by bounded convergence theorem:
+\[\int_{E_N} |f_n - f| < \epsilon \] when \(n\) is larger for some \(N\). Now there exisits a big \(N\):
+\[
+  \begin{split}
+    \int |f_n-f| &= \int_{E_N} |f_n-f| + \int_{E_N^c} |f_n-f|\\
+    &\leq \epsilon + 2\int_{E_N^c}g\\
+    &=3\epsilon
+  \end{split}
+\]
+
 \end{document}
