@@ -240,6 +240,20 @@ requirements of the canonical form.
 Now if \(\varphi\) is a simple function with the canonical form, Lebesgue integral is defined as:
 \[\int_{\mathbb{R}^d}\varphi(x)dx=\sum_{k=1}^Mc_km(F_k)\]
 
+\subsection{Stage three: Non-negative functions}
+\textbf{Lemma 1.7 (Fatou)} Suppose \(\{f_n\}\) is a sequence of measurable functions with \(f_n \geq 0\). If 
+\(\lim_{n\to\infty}f_n(x)\to f(x)\) for a.e. x, then:
+\[f(x)\leq \lim_{n\to\infty}inf\int f_n\]
+
+\textit{Proof:} suppose \(0\leq g(x) \leq f(x)\), where \(g_n(x)\) is bounded and supported on set \(E\)
+of finite measure. Let \(g_n(x)=min(g(x), f_n(x))\), when \(n\to\infty\), since \(f_n(x)\to f(x)\) and \(g<f\),
+\(g_n(x)\to g(x)\). As by construction, \(g_n(x)\) is bounded and supported on a set of finite measure, with \textit{bounded convergence theorem},
+\(\int g_n(x)\to \int g(x)\). Again by construction, \(g_n(x)\leq f_n(x)\) so that \(\int g_n(x) \leq \int f_n(x)\). Therefore
+\[
+  \lim_{n\to\infty}\int g_n(x)=\int g(x) \leq \lim_{n\to\infty}\inf f_n
+\]
+Take the supremum over all \(g\) and by the definition of integral of non-negative measurable functions,
+we can take the desired inequality.
 
 \subsection{Stage four: general case}
 For general case, namely when \(f\) is any real-valued measurable function on \(\mathbb{R}^d\).
