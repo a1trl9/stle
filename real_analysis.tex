@@ -255,6 +255,27 @@ of finite measure. Let \(g_n(x)=min(g(x), f_n(x))\), when \(n\to\infty\), since 
 Take the supremum over all \(g\) and by the definition of integral of non-negative measurable functions,
 we can take the desired inequality.
 
+\textbf{Corollary 1.8} suppose \(f\) is a non-negative measurable function, and \(\{f_n\}\) is a sequence
+of non-negative measurable functions with \(f_n(x)\leq f(x)\) and \(f_n(x)\to f(x)\) for almost every \(x\). Then:
+\[\lim_{n\to\infty}\int f_n = \int f\]
+
+\textit{Proof:} since \(f_n(x)\leq f(x)\) for almost every \(x\), \(\int f_n(x)\leq \int f(x)\) all all \(n\). Therefore:
+\[\lim_{n\to\infty}sup\int f_n(x)\leq\int f(x)\]
+
+With \textit{Fatou lemma}, we get desired result.
+
+\textit{Corollary 1.8} could lead to \textit{Monotone convergence theorem (corollary 1.9)}, which states: suppose
+\(\{f_n\}\) is a sequence of non-negative measurable functions with \(f_n\nearrow f \) (monotonously increasing), then:
+\[\lim_{n\to\infty}\int f_n(x)=\int f(x)\]
+
+\textit{Corollary 1.10} Consider a series \(\sum_{k=1}^{\infty}a_k(x)\) where \(a_k(x) \geq 0\) is measurable for every \(k \geq 1\). Then:
+\[\int \sum_{k=1}^{\infty}a_k(x)dx=\sum_{k=1}^{\infty}\int a_k(x)dx\]
+
+\textit{Proof:} let \(f_n(x)=\sum_{k=1}^{n}a_k(x)\) and \(f(x)=\sum_{k=1}^{\infty}a_k(x)\). Obviously \(f_n(x)\), as finite sum, is measurable
+and \(f_n(x)\leq f_{n+1}(x)\). And \(f_n(x)\to f(x)\) when  \(n\to\infty\). By \textit{monotone convergence theorem},
+\(\int \sum_{k=1}^na_k(x)dx\to \int \sum_{k=1}^{\infty}a_k(x)dx\) as \(n\to\infty\). Since \(\int \sum_{k=1}^na_k(x)dx=\sum_{k=1}^n\int a_k(x)dx\),
+we get desired result.
+
 \subsection{Stage four: general case}
 For general case, namely when \(f\) is any real-valued measurable function on \(\mathbb{R}^d\).
 \(f\) is said Lebesgue Integrable when the non-negative measurable function \(|f|\) is integrable
