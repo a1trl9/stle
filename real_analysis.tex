@@ -240,6 +240,29 @@ requirements of the canonical form.
 Now if \(\varphi\) is a simple function with the canonical form, Lebesgue integral is defined as:
 \[\int_{\mathbb{R}^d}\varphi(x)dx=\sum_{k=1}^Mc_km(F_k)\]
 
+\subsection{Stage two: Bounded non-negative functions}
+
+\textbf{Bounded convergence theorem}
+
+Suppose \(\{f_n\}\) is a sequence of measurable functions that are all bounded by \(M\), and supported
+on a set \(E\) of finite measure. \(f_n\to f\) a.e.x when \(n\to\infty\). Then \(f\) is measurable,
+bounded, supported on \(E\) for a.e.x, and
+
+\[\int |f_n-f|\to 0\] when \(n\to\infty\)
+
+\textit{Proof:} measurable, bounded and supported on \(E\) are obvious. For the last part: with
+\textit{Egorov theorem}, there exists a measurable subset \(A_E\subset E\) with \(m(E-A_e)<\epsilon\) and
+\(f_n\to f\) uniformly on \(A_E\). Now:
+
+\[
+  \begin{split}
+    \lim_{n\to\infty}\int |f_n-f|&\leq \int_{A_E}|f_n-f|+\int_{E-A_E}|f_n-f|\\
+    &\leq \epsilon m(E) + 2M\epsilon 
+  \end{split}
+\]
+
+Since \(\epsilon\) could be arbitrary small, \(m(E)\) and \(M\) are finite, we get desired result.
+
 \subsection{Stage three: Non-negative functions}
 \textbf{Lemma 1.7 (Fatou)} Suppose \(\{f_n\}\) is a sequence of measurable functions with \(f_n \geq 0\). If 
 \(\lim_{n\to\infty}f_n(x)\to f(x)\) for a.e. x, then:
