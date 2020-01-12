@@ -223,6 +223,27 @@ implies \(x\in E_{k_n}^n\). Therefore \(|f_j(x)-f(x)| < \delta\) whenever \(j > 
 Finally, by \textit{theorem ()}, choose a closed set \(A'_{\epsilon}\subset A_{\epsilon}\) with
 \(m(A'_{\epsilon}-A_{\epsilon})<\frac{\epsilon}{2}\). This closed set meets all requirements. Proved.
 
+\subsubsection{Lusin Theorem}
+Suppose \(f\) is measurable and finite valued on \(E\) with \(E\) of finite measure. Then for
+every \(\epsilon > 0\) there exists a closed set \(F_{\epsilon}\) with:
+
+\[F_{\epsilon} \subset E\] and
+\[m(E-F_{\epsilon})\leq \epsilon\]
+
+such that \(f|_{F_{\epsilon}}\) is continuous.
+
+\textit{Proof:} Let \(f_n\) be a sequence of step functions so that \(f_n\to f\) a.e. Then we may
+find sets \(E_n < \frac{1}{2^n}\) and \(f_n\) is continuous outside \(E_n\). By \textit{Egorov's theorem},
+we may find a set \(A_{\epsilon/3}\) on which \(f_n\to f\) uniformly and \(m(E-A_{\epsilon/3})\leq \frac{\epsilon}{3}\).
+Now consider:
+
+\[F'=A_{\epsilon/3}-\cup_{n\geq N}E_n\]
+
+for \(N\) large enough that \(\sum_{n\geq N}\frac{1}{2^n}<\frac{\epsilon}{3}\). Now \(\{f_n\}\) are continuous on
+\(F'\). Also \(f_n\to f\) uniformly on \(F'\), so that \(f\) is continuous on \(F'\). Now construct a closed set \(F_{\epsilon}\)
+such that \(m(F'-F_{\epsilon})<\frac{\epsilon}{3}\). With \(m(E-A_{\epsilon/3})<\frac{\epsilon}{3}\) and \(m(F'-A_{\epsilon/3})<\frac{\epsilon}{3}\),
+\(F_{\epsilon}\) is a desired set.
+
 \section{Integration Theory}
 
 \subsection{Stage one: simple functions}
